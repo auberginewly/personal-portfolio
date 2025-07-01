@@ -416,8 +416,27 @@
     </footer>
 
     <!-- 模块化脚本加载 -->
-    <script type="module" src="assets/js/main-modular.js"></script>
-    <script type="module" src="assets/js/modules/simple-blog.js"></script>
+    <script type="module">
+        // 安全加载博客功能
+        try {
+            import('./assets/js/main-modular.js').catch(err => {
+                console.log('模块加载失败，使用降级方案:', err.message);
+            });
+            
+            import('./assets/js/modules/simple-blog.js').catch(err => {
+                console.log('博客模块加载失败:', err.message);
+                // 手动更新统计数据作为降级方案
+                setTimeout(() => {
+                    const articles = document.querySelectorAll('.article-card');
+                    const totalPosts = articles.length;
+                    const postsEl = document.getElementById('totalPosts');
+                    if (postsEl) postsEl.textContent = totalPosts;
+                }, 500);
+            });
+        } catch (error) {
+            console.log('脚本初始化失败:', error.message);
+        }
+    </script>
     
     <!-- 降级支持非模块浏览器 -->
     <script nomodule src="assets/js/main.js"></script>
