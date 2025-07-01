@@ -517,15 +517,102 @@
     left: 100%;
 }
 
-/* 文章卡片悬停动画增强 */
+/* 文章卡片精致浮动效果 */
 .article-card {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        0 0 1px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(135, 206, 235, 0.08);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transform: translateY(0);
+    animation: fadeInUp 0.6s ease-out backwards;
 }
 
-.article-card:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(135, 206, 235, 0.2);
+/* 卡片背景微妙渐变 */
+.article-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(135, 206, 235, 0.02) 0%, 
+        rgba(255, 255, 255, 0.01) 50%, 
+        rgba(135, 206, 235, 0.03) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
 }
+
+/* 卡片顶部装饰线 */
+.article-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        var(--primary-color) 0%, 
+        var(--secondary-color) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 2;
+}
+
+/* 确保卡片内容在渐变之上 */
+.article-card > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* 悬停效果 */
+.article-card:hover {
+    transform: translateY(-16px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.08),
+        0 16px 35px rgba(0, 0, 0, 0.12),
+        0 24px 45px rgba(135, 206, 235, 0.15),
+        0 0 1px rgba(0, 0, 0, 0.04);
+    border-color: rgba(135, 206, 235, 0.2);
+}
+
+.article-card:hover::before {
+    opacity: 1;
+}
+
+.article-card:hover::after {
+    transform: scaleX(1);
+}
+
+/* 点击时的反馈效果 */
+.article-card:active {
+    transform: translateY(-12px) scale(0.98);
+    transition-duration: 0.1s;
+}
+
+/* 加载动画延迟 */
+.article-card:nth-child(1) { animation-delay: 0.1s; }
+.article-card:nth-child(2) { animation-delay: 0.2s; }
+.article-card:nth-child(3) { animation-delay: 0.3s; }
+.article-card:nth-child(4) { animation-delay: 0.4s; }
+.article-card:nth-child(5) { animation-delay: 0.5s; }
+.article-card:nth-child(6) { animation-delay: 0.6s; }
+.article-card:nth-child(7) { animation-delay: 0.7s; }
+.article-card:nth-child(8) { animation-delay: 0.8s; }
+.article-card:nth-child(9) { animation-delay: 0.9s; }
+.article-card:nth-child(n+10) { animation-delay: 1s; }
 
 /* 文章标签动画 */
 .article-tags .tag {
@@ -597,10 +684,20 @@
     
     .article-card {
         padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+    }
+    
+    .article-card:hover {
+        transform: translateY(-8px);
     }
     
     .article-title {
         font-size: 1.2rem;
+    }
+    
+    .article-stats {
+        gap: 1rem;
     }
     
     .view-toggle {
@@ -629,7 +726,29 @@
     }
     
     .article-card {
-        padding: 20px;
+        padding: 1.25rem;
+        border-radius: 10px;
+    }
+    
+    .article-card:hover {
+        transform: translateY(-6px);
+    }
+    
+    .article-title {
+        font-size: 1.1rem;
+    }
+    
+    .article-excerpt {
+        font-size: 0.95rem;
+    }
+    
+    .article-tags {
+        gap: 0.4rem;
+    }
+    
+    .article-tags .tag {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
     }
     
     .author-links {
@@ -1345,6 +1464,344 @@
     .quick-link {
         padding: 10px 12px;
         font-size: 0.9rem;
+    }
+}
+
+/* 文章卡片内部元素精致样式 */
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(135, 206, 235, 0.1);
+    position: relative;
+}
+
+.article-date {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid rgba(135, 206, 235, 0.1);
+    transition: all 0.3s ease;
+}
+
+.article-category {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(135, 206, 235, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.article-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.article-card:hover .article-category::before {
+    left: 100%;
+}
+
+.article-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.article-card:hover .article-title {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.article-excerpt {
+    font-size: 1rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+.article-card:hover .article-excerpt {
+    color: #475569;
+}
+
+.article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.article-card:hover .article-tags {
+    opacity: 1;
+}
+
+.article-tags .tag {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    color: #475569;
+    padding: 0.35rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(135, 206, 235, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.article-tags .tag:hover {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(135, 206, 235, 0.4);
+    border-color: transparent;
+}
+
+.article-tags .tag.updating {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+    color: white;
+    border-color: transparent;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.article-stats {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 0.85rem;
+    color: #6b7280;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(135, 206, 235, 0.08);
+    margin-top: auto;
+}
+
+.article-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.article-stats i {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.article-card:hover .article-stats span {
+    color: #475569;
+}
+
+.article-card:hover .article-stats i {
+    transform: scale(1.1);
+    color: var(--secondary-color);
+}
+
+/* 列表视图特殊样式 */
+.article-list.list-view .article-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 2rem;
+    padding: 2rem;
+    min-height: 200px;
+}
+
+.article-list.list-view .article-card .article-meta {
+    margin-bottom: 0.8rem;
+}
+
+.article-list.list-view .article-card .article-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+}
+
+.article-list.list-view .article-card .article-excerpt {
+    margin-bottom: 1rem;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+
+/* 网格视图特殊样式 */
+.article-list.grid-view .article-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 320px;
+}
+
+.article-list.grid-view .article-card .article-title {
+    font-size: 1.25rem;
+}
+
+.article-list.grid-view .article-card .article-excerpt {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    flex-grow: 1;
+}
+
+/* 卡片容器增强 */
+.articles-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* 响应式优化 - 保持精致效果 */
+@media (max-width: 768px) {
+    .article-card {
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+    }
+    
+    .article-card:hover {
+        transform: translateY(-8px);
+    }
+    
+    .article-list.list-view .article-card {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .article-title {
+        font-size: 1.2rem;
+    }
+    
+    .article-stats {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-card {
+        padding: 1.25rem;
+        border-radius: 10px;
+    }
+    
+    .article-card:hover {
+        transform: translateY(-6px);
+    }
+    
+    .article-title {
+        font-size: 1.1rem;
+    }
+    
+    .article-excerpt {
+        font-size: 0.95rem;
+    }
+    
+    .article-tags {
+        gap: 0.4rem;
+    }
+    
+    .article-tags .tag {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* 减少动画的用户偏好设置支持 */
+@media (prefers-reduced-motion: reduce) {
+    .article-card {
+        transition: box-shadow 0.2s ease;
+        animation: none;
+    }
+    
+    .article-card:hover {
+        transform: none;
+        box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.1),
+            0 8px 20px rgba(135, 206, 235, 0.1);
+    }
+    
+    .article-card::after,
+    .article-category::before,
+    .article-tags .tag {
+        transition: none;
+    }
+    
+    .article-card:nth-child(n) {
+        animation-delay: 0s;
+    }
+}
+
+/* 深色模式支持（预留） */
+@media (prefers-color-scheme: dark) {
+    .article-card {
+        background: #1e293b;
+        border-color: rgba(135, 206, 235, 0.2);
+        color: #e2e8f0;
+    }
+    
+    .article-card::before {
+        background: linear-gradient(135deg, 
+            rgba(135, 206, 235, 0.05) 0%, 
+            rgba(255, 255, 255, 0.02) 50%, 
+            rgba(135, 206, 235, 0.08) 100%);
+    }
+    
+    .article-title {
+        color: #f1f5f9;
+    }
+    
+    .article-card:hover .article-title {
+        color: var(--primary-color);
+    }
+    
+    .article-excerpt {
+        color: #94a3b8;
+    }
+    
+    .article-date {
+        background: linear-gradient(135deg, #334155 0%, #475569 100%);
+        color: #cbd5e1;
+        border-color: rgba(135, 206, 235, 0.2);
+    }
+    
+    .article-tags .tag {
+        background: linear-gradient(135deg, #334155 0%, #475569 100%);
+        color: #cbd5e1;
+        border-color: rgba(135, 206, 235, 0.2);
+    }
+    
+    .article-stats {
+        color: #94a3b8;
+        border-color: rgba(135, 206, 235, 0.15);
     }
 }
 
