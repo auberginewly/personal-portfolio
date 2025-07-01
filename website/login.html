@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - auberginewly</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🍆 auberginewly</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="skills.html">技术栈</a></li>
+                <li><a href="projects.html">我的项目</a></li>
+                <li><a href="blog-list.html">技术博客</a></li>
+                <li><a href="todo.html">待办事项</a></li>
+                <li><a href="login.html" class="active">登录</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="auth-main">
+        <div class="auth-container">
+            <div class="auth-card">
+                <!-- 切换标签 -->
+                <div class="auth-tabs">
+                    <button class="tab-btn active" data-tab="login">登录</button>
+                    <button class="tab-btn" data-tab="register">注册</button>
+                </div>
+
+                <!-- 登录表单 -->
+                <div class="auth-form" id="loginForm">
+                    <div class="form-header">
+                        <h2>欢迎回来</h2>
+                        <p>登录您的账户以访问个人空间</p>
+                    </div>
+
+                    <form id="loginFormElement">
+                        <div class="form-group">
+                            <label for="loginEmail">邮箱地址</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="loginEmail" name="email" placeholder="请输入邮箱地址" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loginPassword">密码</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="loginPassword" name="password" placeholder="请输入密码" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="rememberMe">
+                                <span class="checkmark"></span>
+                                记住我
+                            </label>
+                            <a href="#" class="forgot-password">忘记密码？</a>
+                        </div>
+
+                        <button type="submit" class="auth-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            登录
+                        </button>
+                    </form>
+
+                    <div class="auth-divider">
+                        <span>或者</span>
+                    </div>
+
+                    <div class="social-login">
+                        <button class="social-btn github-btn">
+                            <i class="fab fa-github"></i>
+                            使用 GitHub 登录
+                        </button>
+                        <button class="social-btn google-btn">
+                            <i class="fab fa-google"></i>
+                            使用 Google 登录
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 注册表单 (XSS 测试点 - 存储型) -->
+                <div class="auth-form" id="registerForm" style="display: none;">
+                    <div class="form-header">
+                        <h2>创建账户</h2>
+                        <p>加入我们，开始您的技术之旅</p>
+                    </div>
+
+                    <form id="registerFormElement">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">姓</label>
+                                <div class="input-group">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="firstName" name="firstName" placeholder="姓" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">名</label>
+                                <div class="input-group">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="lastName" name="lastName" placeholder="名" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regEmail">邮箱地址</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="regEmail" name="email" placeholder="请输入邮箱地址" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regPhone">手机号</label>
+                            <div class="input-group">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="regPhone" name="phone" placeholder="请输入手机号" pattern="[0-9]{11}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="regPassword">密码</label>
+                                <div class="input-group">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="regPassword" name="password" placeholder="请输入密码" minlength="6" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('regPassword')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">确认密码</label>
+                                <div class="input-group">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="请确认密码" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>性别</label>
+                            <div class="radio-group">
+                                <label class="radio-container">
+                                    <input type="radio" name="gender" value="male" id="genderMale">
+                                    <span class="radio-checkmark"></span>
+                                    男
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="gender" value="female" id="genderFemale">
+                                    <span class="radio-checkmark"></span>
+                                    女
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="gender" value="other" id="genderOther">
+                                    <span class="radio-checkmark"></span>
+                                    其他
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="intro">个人简介 <span class="optional">(可选)</span></label>
+                            <textarea id="intro" name="intro" rows="4" placeholder="请输入您的个人简介，这将显示在您的个人资料中..."></textarea>
+                            <small class="form-hint">⚠️ 此区域为XSS测试点，可输入HTML标签进行安全测试</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="agreeTerms" required>
+                                <span class="checkmark"></span>
+                                我同意 <a href="#" target="_blank">用户协议</a> 和 <a href="#" target="_blank">隐私政策</a>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="auth-btn">
+                            <i class="fas fa-user-plus"></i>
+                            创建账户
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 功能说明 -->
+            <div class="features-card">
+                <h3>加入我们，您将获得：</h3>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <i class="fas fa-comment-dots"></i>
+                        <div>
+                            <h4>互动交流</h4>
+                            <p>参与技术讨论，分享学习心得</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bookmark"></i>
+                        <div>
+                            <h4>内容收藏</h4>
+                            <p>收藏感兴趣的文章和项目</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bell"></i>
+                        <div>
+                            <h4>更新通知</h4>
+                            <p>及时获取最新技术文章推送</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <div>
+                            <h4>学习追踪</h4>
+                            <p>记录您的学习进度和成长轨迹</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- XSS 测试说明 -->
+        <div class="security-notice">
+            <div class="container">
+                <div class="notice-card">
+                    <h3><i class="fas fa-shield-alt"></i> 安全测试说明</h3>
+                    <p>此页面包含用于教学目的的XSS（跨站脚本）漏洞测试点，用于演示Web安全防护的重要性。</p>
+                    <div class="test-points">
+                        <h4>测试点说明：</h4>
+                        <ul>
+                            <li><strong>存储型XSS：</strong>个人简介输入框 - 恶意脚本会被存储到localStorage并在其他页面显示</li>
+                            <li><strong>测试Payload：</strong><code>&lt;img src=x onerror=alert('存储型XSS');&gt;</code></li>
+                            <li><strong>防护方案：</strong>输入过滤 + 输出编码（使用textContent而非innerHTML）</li>
+                        </ul>
+                    </div>
+                    <div class="security-tips">
+                        <h4>安全最佳实践：</h4>
+                        <ul>
+                            <li>永远不要信任用户输入</li>
+                            <li>对输出内容进行HTML实体编码</li>
+                            <li>使用Content Security Policy (CSP)</li>
+                            <li>定期进行安全测试和代码审查</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 auberginewly. All rights reserved.</p>
+            <p>一只喜欢茄子的汉堡</p>
+            <p class="icp-info">
+                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">赣ICP备2025066072号</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- 模块化脚本加载 -->
+    <script type="module" src="assets/js/main-modular.js"></script>
+    
+    <!-- 降级支持非模块浏览器 -->
+    <script nomodule src="assets/js/main.js"></script>
+    <script src="assets/js/security.js"></script>
+    <script>
+        // 密码显示/隐藏切换
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const toggle = input.nextElementSibling;
+            const icon = toggle.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // 标签切换
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.dataset.tab;
+                
+                // 更新标签状态
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // 切换表单
+                document.querySelectorAll('.auth-form').forEach(form => {
+                    form.style.display = 'none';
+                });
+                document.getElementById(tab + 'Form').style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
