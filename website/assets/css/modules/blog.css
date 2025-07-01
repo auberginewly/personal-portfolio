@@ -1236,6 +1236,73 @@
     padding: 40px 0;
 }
 
+/* iframe头部控制区域 */
+.iframe-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.iframe-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    flex: 1;
+    text-align: center;
+    margin: 0 20px;
+}
+
+.back-btn,
+.open-new-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    border: 2px solid var(--border-color);
+    background: white;
+    color: var(--text-color);
+    border-radius: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.back-btn:hover,
+.open-new-tab:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(135, 206, 235, 0.4);
+}
+
+.back-btn::before,
+.open-new-tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.back-btn:hover::before,
+.open-new-tab:hover::before {
+    left: 100%;
+}
+
 .iframe-container {
     position: relative;
     margin-bottom: 30px;
@@ -1408,6 +1475,27 @@
         padding: 20px 0;
     }
     
+    .iframe-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .iframe-title {
+        margin: 0;
+        order: -1;
+        font-size: 1.1rem;
+    }
+    
+    .back-btn,
+    .open-new-tab {
+        flex: 1;
+        justify-content: center;
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+        min-width: 120px;
+    }
+    
     .iframe-container iframe {
         min-height: 600px;
     }
@@ -1453,6 +1541,22 @@
 }
 
 @media (max-width: 480px) {
+    .iframe-header {
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .iframe-title {
+        font-size: 1rem;
+    }
+    
+    .back-btn,
+    .open-new-tab {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+        min-width: 100px;
+    }
+    
     .iframe-container iframe {
         min-height: 500px;
     }
