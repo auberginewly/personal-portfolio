@@ -28,18 +28,29 @@ Netlify会自动检测到 `netlify.toml` 配置文件！
 2. 点击 "Add custom domain"
 3. 输入你的域名（如：`yourname.com`）
 
-### 在你的域名注册商：
-添加以下DNS记录：
-```
+### 在你的域名注册商配置DNS：
+
+#### 推荐配置（使用主域名）：
+```bash
+# 在域名注册商添加以下DNS记录：
 类型    名称    值
 A       @       75.2.60.5
-CNAME   www     你的netlify域名.netlify.app
+CNAME   www     auberginewly.site
 ```
 
-或者使用Netlify DNS：
-1. 在Netlify中添加域名
-2. 复制提供的DNS服务器地址
-3. 在域名注册商处修改DNS服务器
+#### 未来扩展子域名（可选）：
+```bash
+# 如果需要子域名功能：
+CNAME   blog    你的netlify域名.netlify.app
+CNAME   api     你的后端服务器地址
+CNAME   dev     你的开发环境地址
+```
+
+#### 或者使用Netlify DNS（推荐）：
+1. 在Netlify控制台添加域名 `auberginewly.site`
+2. 复制Netlify提供的DNS服务器地址
+3. 在域名注册商处将DNS服务器修改为Netlify的
+4. 这样所有子域名都可以在Netlify控制台管理
 
 ## 🔧 高级配置
 
