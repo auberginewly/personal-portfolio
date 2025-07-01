@@ -46,15 +46,15 @@
                         <p class="author-bio">一只喜欢茄子的汉堡 🍆</p>
                         <div class="author-stats">
                             <div class="stat-item">
-                                <span class="stat-number" id="totalPosts">--</span>
+                                <span class="stat-number" id="totalPosts">15</span>
                                 <span class="stat-label">文章</span>
                             </div>
                             <div class="stat-item">
-                                <span class="stat-number" id="totalViews">--</span>
+                                <span class="stat-number" id="totalViews">2.8K+</span>
                                 <span class="stat-label">浏览</span>
                             </div>
                             <div class="stat-item">
-                                <span class="stat-number" id="totalTags">--</span>
+                                <span class="stat-number" id="totalTags">25</span>
                                 <span class="stat-label">标签</span>
                             </div>
                         </div>
@@ -86,17 +86,8 @@
                     </div>
                 </div>
                 
-                <div class="articles-loading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>正在加载文章列表...</p>
-                </div>
-                
-                <div class="articles-container article-list" id="articlesContainer" style="display: none;">
-                    <!-- 文章列表将通过JavaScript动态加载 -->
-                </div>
-                
-                <!-- 备用文章列表（当API无法获取时显示） -->
-                <div class="articles-fallback" id="articlesFallback" style="display: none;">
+                <!-- 静态文章列表 -->
+                <div class="articles-container article-list list-view" id="articlesContainer">
                     <div class="article-card" data-url="https://auberginewly.site/2025/05/01/24_htmlpreview/">
                         <div class="article-meta">
                             <span class="article-date">2025-05-01</span>
@@ -415,31 +406,260 @@
         </div>
     </footer>
 
-    <!-- 模块化脚本加载 -->
-    <script type="module">
-        // 安全加载博客功能
-        try {
-            import('./assets/js/main-modular.js').catch(err => {
-                console.log('模块加载失败，使用降级方案:', err.message);
-            });
-            
-            import('./assets/js/modules/simple-blog.js').catch(err => {
-                console.log('博客模块加载失败:', err.message);
-                // 手动更新统计数据作为降级方案
-                setTimeout(() => {
-                    const articles = document.querySelectorAll('.article-card');
-                    const totalPosts = articles.length;
-                    const postsEl = document.getElementById('totalPosts');
-                    if (postsEl) postsEl.textContent = totalPosts;
-                }, 500);
-            });
-        } catch (error) {
-            console.log('脚本初始化失败:', error.message);
+    <!-- 博客功能脚本 -->
+    <script>
+        // 确保始终使用白天模式
+        document.body.classList.remove('dark-theme');
+        document.body.removeAttribute('data-theme');
+        localStorage.removeItem('darkTheme');
+        localStorage.removeItem('theme');
+        
+        // 博客页面功能管理
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // 再次确保白天模式
+                document.body.classList.remove('dark-theme');
+                document.body.removeAttribute('data-theme');
+                
+                // 初始化所有功能
+                updateStats();
+                initViewToggle();
+                initArticleClicks();
+                
+                // 显示页面内容（移除加载状态）
+                const articlesSection = document.querySelector('.blog-articles-section');
+                if (articlesSection) {
+                    articlesSection.style.opacity = '1';
+                }
+                
+                console.log('博客页面功能初始化完成（白天模式）');
+            } catch (error) {
+                console.error('博客页面初始化失败:', error);
+            }
+        });
+
+        // 更新统计数据
+        function updateStats() {
+            try {
+                const articles = document.querySelectorAll('.article-card');
+                const totalPosts = articles.length;
+                
+                if (totalPosts === 0) {
+                    console.log('没有找到文章元素');
+                    return;
+                }
+                
+                // 计算总标签数
+                const allTags = new Set();
+                articles.forEach(function(article) {
+                    const tags = article.querySelectorAll('.tag');
+                    tags.forEach(function(tag) {
+                        const tagText = tag.textContent ? tag.textContent.trim() : '';
+                        if (tagText && tagText !== '更新中') {
+                            allTags.add(tagText);
+                        }
+                    });
+                });
+                
+                // 计算总浏览量
+                let totalViews = 0;
+                articles.forEach(function(article) {
+                    const viewsElement = article.querySelector('.fas.fa-eye');
+                    if (viewsElement && viewsElement.parentElement) {
+                        const viewsText = viewsElement.parentElement.textContent || '';
+                        const views = parseInt(viewsText.match(/\d+/)?.[0] || '0');
+                        totalViews += views;
+                    }
+                });
+
+                // 更新显示
+                updateStatElement('totalPosts', totalPosts);
+                updateStatElement('totalTags', allTags.size);
+                updateStatElement('totalViews', totalViews > 0 ? totalViews.toLocaleString() : '2.8K+');
+                
+                console.log('博客统计更新完成: ' + totalPosts + '篇文章, ' + allTags.size + '个标签, ' + totalViews + '次浏览');
+            } catch (error) {
+                console.error('更新统计数据失败:', error);
+                // 降级处理：保持初始值
+            }
+        }
+
+        // 更新统计元素
+        function updateStatElement(id, value) {
+            try {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = value;
+                }
+            } catch (error) {
+                console.error('更新统计元素 ' + id + ' 失败:', error);
+            }
+        }
+
+        // 初始化视图切换功能
+        function initViewToggle() {
+            try {
+                const listBtn = document.querySelector('.toggle-btn[data-view="list"]');
+                const gridBtn = document.querySelector('.toggle-btn[data-view="grid"]');
+                
+                if (!listBtn || !gridBtn) {
+                    console.warn('视图切换按钮未找到');
+                    return;
+                }
+
+                listBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    switchView('list');
+                });
+
+                gridBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    switchView('grid');
+                });
+                
+                console.log('视图切换功能初始化完成');
+            } catch (error) {
+                console.error('视图切换初始化失败:', error);
+            }
+        }
+
+        // 切换视图
+        function switchView(view) {
+            try {
+                const listBtn = document.querySelector('.toggle-btn[data-view="list"]');
+                const gridBtn = document.querySelector('.toggle-btn[data-view="grid"]');
+                const container = document.querySelector('.articles-container');
+                
+                if (!container) {
+                    console.error('文章容器未找到');
+                    return;
+                }
+
+                // 更新按钮状态
+                if (listBtn && gridBtn) {
+                    listBtn.classList.toggle('active', view === 'list');
+                    gridBtn.classList.toggle('active', view === 'grid');
+                }
+
+                // 更新容器类名
+                if (view === 'list') {
+                    container.classList.remove('grid-view');
+                    container.classList.add('list-view');
+                } else {
+                    container.classList.remove('list-view');
+                    container.classList.add('grid-view');
+                }
+
+                console.log('视图切换到: ' + view);
+            } catch (error) {
+                console.error('视图切换失败:', error);
+            }
+        }
+
+        // 初始化文章点击功能
+        function initArticleClicks() {
+            try {
+                const articles = document.querySelectorAll('.article-card');
+                
+                articles.forEach(function(article, index) {
+                    article.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const url = article.dataset.url;
+                        if (url) {
+                            showArticleInIframe(url, article);
+                        } else {
+                            console.warn('文章 ' + (index + 1) + ' 缺少URL');
+                        }
+                    });
+                    
+                    // 添加键盘支持
+                    article.setAttribute('tabindex', '0');
+                    article.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            article.click();
+                        }
+                    });
+                });
+                
+                console.log('文章点击功能初始化完成，共 ' + articles.length + ' 篇文章');
+            } catch (error) {
+                console.error('文章点击初始化失败:', error);
+            }
+        }
+
+        // 在iframe中显示文章
+        function showArticleInIframe(url, articleElement) {
+            try {
+                const iframeSection = document.getElementById('iframeSection');
+                const iframe = document.getElementById('blogIframe');
+                const iframeTitle = document.getElementById('iframeTitle');
+                const openNewTab = document.getElementById('openNewTab');
+                const backBtn = document.getElementById('backToList');
+                const articlesSection = document.querySelector('.blog-articles-section');
+                
+                if (!iframeSection || !iframe) {
+                    console.error('iframe相关元素未找到');
+                    return;
+                }
+
+                // 设置iframe源和标题
+                iframe.src = url;
+                const title = articleElement.querySelector('.article-title') ? 
+                    articleElement.querySelector('.article-title').textContent : '博客文章';
+                if (iframeTitle) iframeTitle.textContent = title;
+                if (openNewTab) openNewTab.href = url;
+
+                // 显示iframe区域
+                if (articlesSection) articlesSection.style.display = 'none';
+                iframeSection.style.display = 'block';
+                iframeSection.classList.add('show');
+
+                // 绑定返回按钮
+                if (backBtn) {
+                    backBtn.onclick = function() {
+                        hideIframe();
+                    };
+                }
+
+                // 滚动到顶部
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                console.log('显示文章: ' + title);
+            } catch (error) {
+                console.error('显示iframe失败:', error);
+                // 降级处理：在新窗口打开
+                window.open(url, '_blank', 'noopener');
+            }
+        }
+
+        // 隐藏iframe
+        function hideIframe() {
+            try {
+                const iframeSection = document.getElementById('iframeSection');
+                const articlesSection = document.querySelector('.blog-articles-section');
+                const iframe = document.getElementById('blogIframe');
+                
+                if (iframeSection) {
+                    iframeSection.classList.remove('show');
+                    setTimeout(function() {
+                        iframeSection.style.display = 'none';
+                        if (iframe) iframe.src = 'about:blank';
+                    }, 300);
+                }
+                
+                if (articlesSection) {
+                    articlesSection.style.display = 'block';
+                }
+                
+                console.log('隐藏iframe，返回文章列表');
+            } catch (error) {
+                console.error('隐藏iframe失败:', error);
+            }
         }
     </script>
     
-    <!-- 降级支持非模块浏览器 -->
+    <!-- 降级支持 -->
     <script nomodule src="assets/js/main.js"></script>
-    <script src="assets/js/security.js"></script>
 </body>
 </html>

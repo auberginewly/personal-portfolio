@@ -1,64 +1,59 @@
-// theme-toggle.js - 主题切换功能
+// theme-toggle.js - 主题切换功能（已禁用深色模式）
 
 let currentTheme = 'light';
 
-// 获取当前主题
+// 获取当前主题（始终返回白天模式）
 function getCurrentTheme() {
-    return localStorage.getItem('theme') || 'light';
+    return 'light';
 }
 
-// 设置主题
+// 设置主题（始终设置为白天模式）
 function setTheme(theme) {
-    currentTheme = theme;
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    currentTheme = 'light'; // 强制使用白天模式
+    document.body.setAttribute('data-theme', 'light');
+    document.body.classList.remove('dark-theme');
+    localStorage.removeItem('theme'); // 移除主题设置
+    localStorage.removeItem('darkTheme'); // 移除旧的主题设置
     updateThemeToggleButton();
 }
 
-// 切换主题
+// 切换主题（已禁用）
 function toggleTheme() {
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
+    // 不执行任何操作，始终保持白天模式
+    console.log('主题切换已禁用，始终使用白天模式');
 }
 
 // 更新主题切换按钮
 function updateThemeToggleButton() {
     const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
+        // 隐藏主题切换按钮
+        themeToggle.style.display = 'none';
+        
         const icon = themeToggle.querySelector('i');
         if (icon) {
-            if (currentTheme === 'dark') {
-                icon.className = 'fas fa-sun';
-                themeToggle.setAttribute('aria-label', '切换到浅色主题');
-            } else {
-                icon.className = 'fas fa-moon';
-                themeToggle.setAttribute('aria-label', '切换到深色主题');
-            }
+            icon.className = 'fas fa-moon';
+            themeToggle.setAttribute('aria-label', '主题切换已禁用');
         }
     }
 }
 
-// 初始化主题切换
+// 初始化主题切换（强制白天模式）
 function initThemeToggle() {
-    // 设置初始主题
-    currentTheme = getCurrentTheme();
-    setTheme(currentTheme);
+    // 强制设置为白天模式
+    currentTheme = 'light';
+    setTheme('light');
     
-    // 主题切换按钮事件
+    // 主题切换按钮事件（禁用）
     const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
+        // 移除点击事件，隐藏按钮
+        themeToggle.style.display = 'none';
+        themeToggle.removeEventListener('click', toggleTheme);
     }
     
-    // 监听系统主题变化
-    if (window.matchMedia) {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        mediaQuery.addEventListener('change', (e) => {
-            if (!localStorage.getItem('theme')) {
-                setTheme(e.matches ? 'dark' : 'light');
-            }
-        });
-    }
+    // 忽略系统主题变化，始终使用白天模式
+    console.log('主题系统已初始化，强制使用白天模式');
 }
 
 // 导出函数

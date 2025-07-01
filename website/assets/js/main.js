@@ -666,35 +666,27 @@ function initScrollAnimations() {
     });
 }
 
-// 主题切换
+// 主题切换（禁用深色模式）
 function initThemeToggle() {
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-            const isDark = document.body.classList.contains('dark-theme');
-            localStorage.setItem('darkTheme', isDark);
-            
-            // 更新图标
-            const icon = themeToggle.querySelector('i');
-            if (isDark) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        });
+        // 移除主题切换功能，始终使用白天模式
+        themeToggle.style.display = 'none';
         
-        // 检查保存的主题偏好
-        const savedTheme = localStorage.getItem('darkTheme');
-        if (savedTheme === 'true') {
-            document.body.classList.add('dark-theme');
-            const icon = themeToggle.querySelector('i');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
+        // 确保始终是白天模式
+        document.body.classList.remove('dark-theme');
+        localStorage.removeItem('darkTheme');
+        
+        // 确保图标为月亮（表示可以切换到夜间，但我们禁用了功能）
+        const icon = themeToggle.querySelector('i');
+        if (icon) {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
         }
     }
+    
+    // 强制移除任何可能存在的深色主题类
+    document.body.classList.remove('dark-theme');
 }
 
 // 博客iframe功能初始化

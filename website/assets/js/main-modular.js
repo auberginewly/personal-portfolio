@@ -1,5 +1,16 @@
 // main.js - 主入口文件，负责模块导入和初始化
 
+// 强制白天模式
+function forceWhiteMode() {
+    document.body.classList.remove('dark-theme');
+    document.body.removeAttribute('data-theme');
+    localStorage.removeItem('darkTheme');
+    localStorage.removeItem('theme');
+}
+
+// 立即执行强制白天模式
+forceWhiteMode();
+
 // 检查是否支持ES6模块
 const supportsModules = 'noModule' in HTMLScriptElement.prototype;
 
@@ -12,6 +23,9 @@ if (!supportsModules) {
 // 动态导入模块（支持现代浏览器）
 async function initializeApp() {
     try {
+        // 确保白天模式
+        forceWhiteMode();
+        
         // 动态导入所有模块
         const [
             { initMobileNavigation },
@@ -41,6 +55,9 @@ async function initializeApp() {
             initNotifications,
             showNotification
         });
+
+        // 再次确保白天模式
+        forceWhiteMode();
 
         // 初始化基础功能
         initBasicFeatures({ debounce, throttle, isMobile });

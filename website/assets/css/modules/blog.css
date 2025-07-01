@@ -1760,49 +1760,4 @@
     }
 }
 
-/* 深色模式支持（预留） */
-@media (prefers-color-scheme: dark) {
-    .article-card {
-        background: #1e293b;
-        border-color: rgba(135, 206, 235, 0.2);
-        color: #e2e8f0;
-    }
-    
-    .article-card::before {
-        background: linear-gradient(135deg, 
-            rgba(135, 206, 235, 0.05) 0%, 
-            rgba(255, 255, 255, 0.02) 50%, 
-            rgba(135, 206, 235, 0.08) 100%);
-    }
-    
-    .article-title {
-        color: #f1f5f9;
-    }
-    
-    .article-card:hover .article-title {
-        color: var(--primary-color);
-    }
-    
-    .article-excerpt {
-        color: #94a3b8;
-    }
-    
-    .article-date {
-        background: linear-gradient(135deg, #334155 0%, #475569 100%);
-        color: #cbd5e1;
-        border-color: rgba(135, 206, 235, 0.2);
-    }
-    
-    .article-tags .tag {
-        background: linear-gradient(135deg, #334155 0%, #475569 100%);
-        color: #cbd5e1;
-        border-color: rgba(135, 206, 235, 0.2);
-    }
-    
-    .article-stats {
-        color: #94a3b8;
-        border-color: rgba(135, 206, 235, 0.15);
-    }
-}
-
 
