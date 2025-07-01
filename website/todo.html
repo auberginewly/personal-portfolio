@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代办事项 - auberginewly</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/modules/todo.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🍆 auberginewly</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="skills.html">技术栈</a></li>
+                <li><a href="projects.html">我的项目</a></li>
+                <li><a href="blog-list.html">技术博客</a></li>
+                <li><a href="todo.html" class="active">代办事项</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>📋 代办事项</h1>
+                <p>记录学习目标与开发任务，追踪成长进度</p>
+            </div>
+        </section>
+
+        <section class="todo-section">
+            <div class="container">
+                <!-- Todo 操作栏 -->
+                <div class="todo-controls">
+                    <!-- 添加任务区域 -->
+                    <div class="add-todo-section">
+                        <h3 class="section-subtitle">
+                            <i class="fas fa-plus-circle"></i> 添加新任务
+                        </h3>
+                        <div class="add-todo">
+                            <div class="input-group">
+                                <input type="text" id="todoInput" placeholder="请输入学习目标或开发任务..." class="todo-input-field">
+                            </div>
+                            <div class="select-group">
+                                <select id="todoCategory" class="todo-select">
+                                    <option value="learning">📚 学习</option>
+                                    <option value="project">🚀 项目</option>
+                                </select>
+                                <select id="todoPriority" class="todo-select">
+                                    <option value="low">🟢 低优先级</option>
+                                    <option value="medium">🟡 中优先级</option>
+                                    <option value="high">🔴 高优先级</option>
+                                </select>
+                            </div>
+                            <button id="addTodoBtn" class="btn btn-primary add-btn">
+                                <i class="fas fa-plus"></i> 添加任务
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 搜索和过滤区域 -->
+                    <div class="search-filter-section">
+                        <h3 class="section-subtitle">
+                            <i class="fas fa-search"></i> 搜索与筛选
+                        </h3>
+                        <div class="search-filter-container">
+                            <!-- 搜索栏 -->
+                            <div class="search-todo">
+                                <div class="search-input-group">
+                                    <input type="text" id="searchInput" placeholder="搜索任务标题或描述..." onkeyup="searchTodos()">
+                                    <i class="fas fa-search search-icon"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- 过滤按钮 -->
+                            <div class="todo-filters">
+                                <button class="filter-btn active" data-filter="all">
+                                    <i class="fas fa-list"></i> 全部
+                                </button>
+                                <button class="filter-btn" data-filter="pending">
+                                    <i class="fas fa-clock"></i> 进行中
+                                </button>
+                                <button class="filter-btn" data-filter="completed">
+                                    <i class="fas fa-check"></i> 已完成
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 统计面板 -->
+                <div class="todo-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalTasks">6</h3>
+                            <p>总任务数</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="pendingTasks">4</h3>
+                            <p>进行中</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="completedTasks">2</h3>
+                            <p>已完成</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="completionRate">33%</h3>
+                            <p>完成率</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Todo 列表 -->
+                <div class="todo-list" id="todoList">
+                    <!-- 学习任务 -->
+                    <div class="todo-category-section" data-category="learning">
+                        <h2><i class="fas fa-graduation-cap"></i> 学习任务</h2>
+                        
+                        <div class="todo-item" data-status="pending" data-category="learning" data-priority="high">
+                            <div class="todo-checkbox">
+                                <input type="checkbox" id="todo1">
+                                <label for="todo1"></label>
+                            </div>
+                            <div class="todo-content">
+                                <h3>深入学习 Java Spring Boot 框架</h3>
+                                <p>完成 Spring Boot 官方教程，掌握微服务架构设计</p>
+                                <div class="todo-meta">
+                                    <span class="priority high">高优先级</span>
+                                    <span class="category">学习</span>
+                                    <span class="due-date">目标: 2025-08-01</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 65%;"></div>
+                                    <span class="progress-text">65%</span>
+                                </div>
+                            </div>
+                            <div class="todo-actions">
+                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="todo-item" data-status="pending" data-category="learning" data-priority="medium">
+                            <div class="todo-checkbox">
+                                <input type="checkbox" id="todo2">
+                                <label for="todo2"></label>
+                            </div>
+                            <div class="todo-content">
+                                <h3>学习 React.js 前端框架</h3>
+                                <p>掌握组件化开发思想，学习 Hooks 和状态管理</p>
+                                <div class="todo-meta">
+                                    <span class="priority medium">中优先级</span>
+                                    <span class="category">学习</span>
+                                    <span class="due-date">目标: 2025-09-01</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 40%;"></div>
+                                    <span class="progress-text">40%</span>
+                                </div>
+                            </div>
+                            <div class="todo-actions">
+                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="todo-item" data-status="completed" data-category="learning" data-priority="medium">
+                            <div class="todo-checkbox">
+                                <input type="checkbox" id="todo3" checked>
+                                <label for="todo3"></label>
+                            </div>
+                            <div class="todo-content completed">
+                                <h3>完成 JavaScript ES6+ 语法学习</h3>
+                                <p>掌握箭头函数、Promise、async/await 等现代JavaScript特性</p>
+                                <div class="todo-meta">
+                                    <span class="priority medium">中优先级</span>
+                                    <span class="category">学习</span>
+                                    <span class="completed-date">完成: 2025-06-15</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 100%;"></div>
+                                    <span class="progress-text">100%</span>
+                                </div>
+                            </div>
+                            <div class="todo-actions">
+                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 项目任务 -->
+                    <div class="todo-category-section" data-category="project">
+                        <h2><i class="fas fa-project-diagram"></i> 项目任务</h2>
+                        
+                        <div class="todo-item" data-status="pending" data-category="project" data-priority="high">
+                            <div class="todo-checkbox">
+                                <input type="checkbox" id="todo4">
+                                <label for="todo4"></label>
+                            </div>
+                            <div class="todo-content">
+                                <h3>完善个人作品集网站</h3>
+                                <p>添加更多项目展示，优化用户体验，完成XSS安全测试</p>
+                                <div class="todo-meta">
+                                    <span class="priority high">高优先级</span>
+                                    <span class="category">项目</span>
+                                    <span class="due-date">目标: 2025-07-15</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%;"></div>
+                                    <span class="progress-text">80%</span>
+                                </div>
+                            </div>
+                            <div class="todo-actions">
+                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="todo-item" data-status="pending" data-category="project" data-priority="medium">
+                            <div class="todo-checkbox">
+                                <input type="checkbox" id="todo5">
+                                <label for="todo5"></label>
+                            </div>
+                            <div class="todo-content">
+                                <h3>开发 Java Web 项目</h3>
+                                <p>使用 Spring Boot 开发一个完整的Web应用，包含用户管理、数据持久化等功能</p>
+                                <div class="todo-meta">
+                                    <span class="priority medium">中优先级</span>
+                                    <span class="category">项目</span>
+                                    <span class="due-date">目标: 2025-10-01</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 25%;"></div>
+                                    <span class="progress-text">25%</span>
+                                </div>
+                            </div>
+                            <div class="todo-actions">
+                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="todo-item" data-status="completed" data-category="project" data-priority="medium">
+                            <div class="todo-checkbox">
+                                <input type="checkbox" id="todo6" checked>
+                                <label for="todo6"></label>
+                            </div>
+                            <div class="todo-content completed">
+                                <h3>50 Projects 50 Days 挑战</h3>
+                                <p>完成前端学习挑战项目，提升JavaScript和CSS技能</p>
+                                <div class="todo-meta">
+                                    <span class="priority medium">中优先级</span>
+                                    <span class="category">项目</span>
+                                    <span class="completed-date">进行中: 持续更新</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 60%;"></div>
+                                    <span class="progress-text">60%</span>
+                                </div>
+                            </div>
+                            <div class="todo-actions">
+                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 这里原本是博客和技能分类，已删除 -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 auberginewly. All rights reserved.</p>
+            <p>一只喜欢茄子的汉堡</p>
+            <p class="icp-info">
+                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">赣ICP备2025066072号</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- 模块化脚本加载 -->
+    <script type="module" src="assets/js/main-modular.js"></script>
+    
+    <!-- 降级支持非模块浏览器 -->
+    <script nomodule src="assets/js/main.js"></script>
+</body>
+</html>

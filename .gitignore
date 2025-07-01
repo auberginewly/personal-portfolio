@@ -1,0 +1,42 @@
+# 个人简历文件 - 不上传到公共仓库
+个人简历站 - 前端开发与自建页面安全测试.md
+
+# 开发过程文档 - 仅本地保留
+website/docs/JavaScript模块化拆分报告.md
+website/docs/博客混合式展示功能更新报告.md
+website/docs/模块化拆分完成总结.md
+website/docs/项目更新完成报告.md
+website/docs/项目清理完成报告.md
+
+# 系统和编辑器文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+.vscode/
+.idea/
+
+# 临时文件
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.swo
+
+# Node.js (如果以后添加构建工具)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 环境变量文件
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

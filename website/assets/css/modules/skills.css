@@ -1,0 +1,175 @@
+/* 技能页面样式 */
+
+.skills-section {
+    padding: 60px 0;
+}
+
+.skill-category {
+    margin-bottom: 4rem;
+}
+
+.skill-category h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.skill-category h2 i {
+    color: var(--primary-color);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.skill-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.skill-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.skill-card h3 {
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.skill-level {
+    margin: 1rem 0;
+}
+
+.progress-bar {
+    background-color: var(--light-color);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transition: width 1s ease-out;
+}
+
+.progress-text {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-left: 0.5rem;
+}
+
+/* 正在学习区域 */
+.learning {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+}
+
+.learning h2 {
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.learning-items {
+    display: grid;
+    gap: 1rem;
+}
+
+.learning-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+}
+
+.learning-item i {
+    font-size: 1.5rem;
+}
+
+.learning-progress {
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-weight: 600;
+}
+
+/* 正在学习类别样式 */
+.learning-category h2 {
+    color: #ffc107;
+}
+
+.learning-category h2 i {
+    color: #ffc107;
+}
+
+.learning-card {
+    border-left: 4px solid #ffc107;
+}
+
+.learning-card .skill-icon {
+    color: #ffc107;
+}
+
+.learning-progress {
+    background-color: #ffc107 !important;
+}
+
+/* 产品知识类别样式 */
+.product-category h2 {
+    color: #28a745;
+}
+
+.product-category h2 i {
+    color: #28a745;
+}
+
+.product-card {
+    border-left: 4px solid #28a745;
+}
+
+.product-card .skill-icon {
+    color: #28a745;
+}
+
+.product-progress {
+    background-color: #28a745 !important;
+}
+
+/* 特殊卡片样式（人人都是产品经理） */
+.special-card h3 a {
+    color: var(--dark-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.special-card h3 a:hover {
+    color: #28a745;
+    text-decoration: underline;
+}
+
+.special-card:hover {
+    border-left-color: #28a745;
+    box-shadow: 0 10px 30px rgba(40, 167, 69, 0.2);
+}

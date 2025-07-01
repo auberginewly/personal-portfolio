@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的项目 - auberginewly</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🍆 auberginewly</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="skills.html">技术栈</a></li>
+                <li><a href="projects.html" class="active">我的项目</a></li>
+                <li><a href="blog-list.html">技术博客</a></li>
+                <li><a href="todo.html">代办事项</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>💼 我的项目</h1>
+                <p>探索技术的无限可能，记录学习与成长的足迹</p>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <div class="container">
+                <!-- 项目列表 - 仅展示三个指定项目 -->
+                <div class="projects-grid">
+                    <!-- 成语接龙插件 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="assets/img/chengyu-plugin.png" alt="成语接龙插件">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="https://github.com/auberginewly/astrbot_plugin_chengyu" target="_blank" class="btn btn-small">
+                                        <i class="fab fa-github"></i> 源码
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>AstrBot 成语接龙插件</h3>
+                            <p>为 AstrBot 机器人开发的成语接龙游戏插件，提供智能成语接龙、成语释义查询、游戏数据统计等功能。支持多用户同时游戏，具备完善的错误处理和数据持久化机制。</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">AstrBot</span>
+                                <span class="tech-tag">自然语言处理</span>
+                                <span class="tech-tag">游戏机制</span>
+                                <span class="tech-tag">数据存储</span>
+                            </div>
+                            <div class="project-stats">
+                                <span><i class="fas fa-gamepad"></i> 游戏插件</span>
+                                <span><i class="fas fa-robot"></i> 机器人</span>
+                                <span><i class="fas fa-calendar"></i> 2025</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 飞花令插件 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="assets/img/feihualing-plugin.png" alt="飞花令插件">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="https://github.com/auberginewly/astrbot_plugin_feihualing" target="_blank" class="btn btn-small">
+                                        <i class="fab fa-github"></i> 源码
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>AstrBot 飞花令插件</h3>
+                            <p>传统文化飞花令游戏的机器人插件实现，支持诗词对答、难度分级、计时挑战等功能。内置丰富的诗词数据库，提供多种游戏模式和智能提示系统。</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">AstrBot</span>
+                                <span class="tech-tag">诗词文化</span>
+                                <span class="tech-tag">正则匹配</span>
+                                <span class="tech-tag">文本处理</span>
+                            </div>
+                            <div class="project-stats">
+                                <span><i class="fas fa-book-open"></i> 文化游戏</span>
+                                <span><i class="fas fa-brain"></i> 智能匹配</span>
+                                <span><i class="fas fa-calendar"></i> 2025</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 个人博客网站 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="assets/img/auberginewly.png" alt="个人博客网站">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="https://auberginewly.site" target="_blank" class="btn btn-small">
+                                        <i class="fas fa-external-link-alt"></i> 访问
+                                    </a>
+                                    <a href="https://github.com/auberginewly/auberginewly.github.io" target="_blank" class="btn btn-small">
+                                        <i class="fab fa-github"></i> 源码
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>个人技术博客</h3>
+                            <p>基于 Hexo + Butterfly 主题构建的个人技术博客，记录学习笔记和技术思考。包含25篇技术文章，涵盖前端开发、算法、网络安全等领域。已累计 2161 次浏览，1617 位访客。</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Hexo</span>
+                                <span class="tech-tag">Butterfly</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">GitHub Pages</span>
+                                <span class="tech-tag">Markdown</span>
+                            </div>
+                            <div class="project-stats">
+                                <span><i class="fas fa-eye"></i> 2161 浏览</span>
+                                <span><i class="fas fa-users"></i> 1617 访客</span>
+                                <span><i class="fas fa-calendar"></i> 2024-2025</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GitHub 仓库介绍卡片生成器 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="assets/img/repo-cards-generator.png" alt="GitHub 仓库介绍卡片生成器">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="https://github.com/auberginewly/github-repo-cards-generator" target="_blank" class="btn btn-small">
+                                        <i class="fab fa-github"></i> 源码
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>GitHub 仓库介绍卡片生成器</h3>
+                            <p>一个现代化的 React 应用程序，用于生成美观的 GitHub 仓库介绍卡片。支持链接直接解析、手动输入两种模式，采用纯 Canvas 渲染技术，提供高质量图片导出功能，具备响应式设计和双重保存模式。</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React 18</span>
+                                <span class="tech-tag">Tailwind CSS</span>
+                                <span class="tech-tag">Canvas API</span>
+                                <span class="tech-tag">GitHub API</span>
+                                <span class="tech-tag">响应式设计</span>
+                            </div>
+                            <div class="project-stats">
+                                <span><i class="fas fa-image"></i> 卡片生成器</span>
+                                <span><i class="fab fa-github"></i> API 集成</span>
+                                <span><i class="fas fa-calendar"></i> 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目统计 -->
+                <div class="project-stats-section">
+                    <h2>项目概览</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>4</h3>
+                                <p>核心项目</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>2</h3>
+                                <p>机器人插件</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>1</h3>
+                                <p>React 应用</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-blog"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>25+</h3>
+                                <p>技术文章</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 auberginewly. All rights reserved.</p>
+            <p>一只喜欢茄子的汉堡</p>
+            <p class="icp-info">
+                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">赣ICP备2025066072号</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- 模块化脚本加载 -->
+    <script type="module" src="assets/js/main-modular.js"></script>
+    
+    <!-- 降级支持非模块浏览器 -->
+    <script nomodule src="assets/js/main.js"></script>
+</body>
+</html>
