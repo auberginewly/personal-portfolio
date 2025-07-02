@@ -34,7 +34,8 @@ async function initializeApp() {
             { initThemeToggle },
             { initTodoManager },
             { initNotifications, showNotification },
-            { debounce, throttle, isMobile }
+            { debounce, throttle, isMobile },
+            AuthManagerModule
         ] = await Promise.all([
             import('./modules/navigation.js'),
             import('./modules/form-validation.js'),
@@ -42,7 +43,8 @@ async function initializeApp() {
             import('./modules/theme-toggle.js'),
             import('./modules/todo-manager.js'),
             import('./modules/notifications.js'),
-            import('./modules/utils.js')
+            import('./modules/utils.js'),
+            import('./modules/auth-manager.js')
         ]);
 
         // 初始化所有模块

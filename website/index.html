@@ -19,6 +19,13 @@
                 <li><a href="projects.html">我的项目</a></li>
                 <li><a href="blog-list.html">技术博客</a></li>
                 <li><a href="todo.html">待办事项</a></li>
+                <li class="auth-nav" id="authNav">
+                    <a href="login.html" class="login-btn" id="loginBtn">登录</a>
+                    <div class="user-menu" id="userMenu" style="display: none;">
+                        <span class="user-email" id="userEmail">user@example.com</span>
+                        <button class="logout-btn" id="logoutBtn">退出登录</button>
+                    </div>
+                </li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -172,5 +179,7 @@
     <!-- 降级支持非模块浏览器 -->
     <script nomodule src="assets/js/main.js"></script>
     <script src="assets/js/security.js"></script>
+    
+    <!-- 认证管理由auth-manager.js模块处理 -->
 </body>
 </html>
