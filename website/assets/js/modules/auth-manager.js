@@ -8,9 +8,18 @@ class AuthManager {
 
     // 初始化认证管理器
     init() {
+        console.log('🚀 认证管理器初始化开始');
+        console.log('📊 已加载用户数量:', this.users.length);
+        if (this.users.length > 0) {
+            console.log('👥 已注册用户:', this.users.map(u => ({ email: u.email, id: u.id })));
+        }
+        
         this.updateNavigation();
         this.bindEvents();
         this.handleLoginRedirect();
+        
+        console.log('✅ 认证管理器初始化完成');
+        console.log('💡 调试提示: 在控制台输入 authManager.debugUserData() 查看详细信息');
     }
 
     // 加载用户数据
@@ -101,20 +110,25 @@ class AuthManager {
     // 用户注册
     register(userData) {
         const { email, password, phone, gender, hobbies, region, intro } = userData;
+        console.log('📝 用户注册开始:', { email, phone, gender, region });
         
         // 验证邮箱格式
         if (!this.validateEmail(email)) {
+            console.log('❌ 注册邮箱格式验证失败:', email);
             return { success: false, message: '请输入正确的邮箱格式' };
         }
         
         // 检查邮箱是否已存在
         if (this.users.find(user => user.email === email)) {
+            console.log('❌ 邮箱已被注册:', email);
             return { success: false, message: '该邮箱已被注册' };
         }
         
         // 检查密码强度
         const passwordCheck = this.checkPasswordStrength(password);
+        console.log('🔒 密码强度检查:', passwordCheck);
         if (passwordCheck.strength < 2) {
+            console.log('❌ 密码强度不足');
             return { 
                 success: false, 
                 message: `密码强度不足，建议：${passwordCheck.feedback.join('、')}` 
@@ -134,16 +148,25 @@ class AuthManager {
             registeredAt: new Date().toISOString()
         };
         
+        console.log('👤 创建新用户:', { id: newUser.id, email: newUser.email });
         this.users.push(newUser);
         this.saveUsers();
+        
+        console.log('💾 用户数据已保存，当前用户总数:', this.users.length);
+        console.log('✅ 注册成功');
         
         return { success: true, message: '注册成功！' };
     }
 
     // 用户登录验证
     authenticate(email, password) {
+        console.log('🔐 登录验证开始:', { email, password: '***' });
+        console.log('📊 当前已注册用户数量:', this.users.length);
+        console.log('👥 已注册用户邮箱列表:', this.users.map(u => u.email));
+        
         // 测试账户特殊处理
         if (email === 'admin' && password === 'admin') {
+            console.log('✅ Admin账户登录成功');
             return { 
                 success: true, 
                 user: { 
@@ -156,15 +179,35 @@ class AuthManager {
         
         // 验证邮箱格式
         if (!this.validateEmail(email)) {
+            console.log('❌ 邮箱格式验证失败:', email);
             return { success: false, message: '请输入正确的邮箱格式' };
         }
         
         // 查找用户
-        const user = this.users.find(u => u.email === email && u.password === password);
+        const user = this.users.find(u => {
+            console.log('🔍 检查用户:', { 
+                storedEmail: u.email, 
+                inputEmail: email,
+                emailMatch: u.email === email,
+                passwordMatch: u.password === password 
+            });
+            return u.email === email && u.password === password;
+        });
+        
         if (!user) {
-            return { success: false, message: '邮箱或密码错误' };
+            console.log('❌ 用户验证失败');
+            // 检查是否邮箱存在但密码错误
+            const emailExists = this.users.find(u => u.email === email);
+            if (emailExists) {
+                console.log('📧 邮箱存在但密码错误');
+                return { success: false, message: '密码错误，请检查密码' };
+            } else {
+                console.log('📧 邮箱不存在');
+                return { success: false, message: '该邮箱尚未注册，请先注册' };
+            }
         }
         
+        console.log('✅ 用户验证成功:', { email: user.email, id: user.id });
         return { success: true, user };
     }
 
@@ -334,6 +377,35 @@ class AuthManager {
         } else if (feedback) {
             feedback.style.display = 'none';
         }
+    }
+
+    // 调试功能：显示用户数据
+    debugUserData() {
+        console.log('🐛 === 认证系统调试信息 ===');
+        console.log('💾 localStorage中的用户数据:', localStorage.getItem('registeredUsers'));
+        console.log('👥 解析后的用户列表:', this.users);
+        console.log('🔑 当前登录状态:', this.isLoggedIn());
+        console.log('👤 当前登录用户:', this.getCurrentUser());
+        console.log('========================');
+        
+        // 在控制台提供快捷操作
+        console.log('💡 调试提示:');
+        console.log('- 查看用户数据: authManager.debugUserData()');
+        console.log('- 清除所有用户: authManager.clearAllUsers()');
+        console.log('- 重新加载用户: authManager.reloadUsers()');
+    }
+
+    // 调试功能：清除所有用户数据
+    clearAllUsers() {
+        localStorage.removeItem('registeredUsers');
+        this.users = [];
+        console.log('🗑️ 已清除所有用户数据');
+    }
+
+    // 调试功能：重新加载用户数据
+    reloadUsers() {
+        this.users = this.loadUsers();
+        console.log('🔄 已重新加载用户数据:', this.users);
     }
 }
 
