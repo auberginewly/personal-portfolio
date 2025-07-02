@@ -106,48 +106,99 @@
     opacity: 0;
     transform: translateX(-10px);
     animation: musicInfoSlideIn 0.5s ease-out 1.5s forwards;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 歌曲标题容器 */
+.music-title-container {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px !important;
+    padding: 2px !important;
+    margin-bottom: 6px !important;
+    display: block !important;
 }
 
 .music-title {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: block !important;
+    color: white !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    padding: 2px !important;
+    margin: 0 !important;
+    background: none !important;
+    line-height: 1.2 !important;
 }
 
-/* 音乐进度条 */
-.music-progress {
-    width: 100%;
+/* 音乐进度容器 */
+.music-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 时间显示 */
+.current-time, .total-time {
+    color: var(--text-dark);
+    font-size: 11px;
+    font-weight: 500;
+    min-width: 35px;
+    text-align: center;
+}
+
+/* 进度滑块 */
+.progress-slider {
+    flex: 1;
     height: 4px;
     background: rgba(135, 206, 235, 0.2);
     border-radius: 2px;
-    overflow: hidden;
-    position: relative;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: all 0.2s ease;
 }
 
-.progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+.progress-slider:hover {
+    height: 6px;
+    background: rgba(135, 206, 235, 0.3);
+}
+
+.progress-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.progress-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 3px 8px rgba(135, 206, 235, 0.4);
+}
+
+.progress-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.progress-slider::-moz-range-track {
+    height: 4px;
+    background: rgba(135, 206, 235, 0.2);
     border-radius: 2px;
-    width: 0%;
-    transition: width 0.3s ease;
-    position: relative;
-}
-
-.progress-bar::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 8px;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 0 2px 2px 0;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    border: none;
 }
 
 /* 音量控制区域 */
@@ -155,6 +206,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-shrink: 0;
     opacity: 0;
     transform: translateX(10px);
     animation: musicVolumeSlideIn 0.5s ease-out 1.8s forwards;
@@ -162,7 +214,7 @@
 
 .music-volume i {
     color: var(--primary-color);
-    font-size: 14px;
+    font-size: 16px;
     width: 16px;
     text-align: center;
 }
@@ -345,6 +397,14 @@
     
     .music-title {
         color: #ffffff;
+    }
+    
+    .current-time, .total-time {
+        color: #ffffff;
+    }
+    
+    .music-title-container {
+        background: rgba(255, 255, 255, 0.1);
     }
     
     .music-volume i {
