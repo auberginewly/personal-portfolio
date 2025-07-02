@@ -816,29 +816,29 @@
                         <h1>用户注册</h1>
                         <p>创建您的auberginewly账户</p>
                     </div>
-
+                    
                     <!-- 注册表单 -->
                     <form class="auth-form" id="registerForm">
-                        <div class="form-group">
+                            <div class="form-group">
                             <label for="email">邮箱地址</label>
                             <div class="input-group">
-                                <i class="fas fa-envelope"></i>
+                                    <i class="fas fa-envelope"></i>
                                 <input type="email" id="email" name="email" placeholder="请输入邮箱地址" required>
                             </div>
-                        </div>
-
-                        <div class="form-group">
+                            </div>
+                            
+                            <div class="form-group">
                             <label for="phone">手机号</label>
                             <div class="input-group">
-                                <i class="fas fa-phone"></i>
+                                    <i class="fas fa-phone"></i>
                                 <input type="tel" id="phone" name="phone" placeholder="请输入手机号" pattern="[0-9]{11}" required>
                             </div>
                         </div>
-
-                        <div class="form-group">
+                        
+                            <div class="form-group">
                             <label for="password">密码</label>
                             <div class="input-group">
-                                <i class="fas fa-lock"></i>
+                                    <i class="fas fa-lock"></i>
                                 <input type="password" id="password" name="password" placeholder="请输入密码" minlength="6" required>
                                 <button type="button" class="password-toggle" onclick="togglePassword('password')">
                                     <i class="fas fa-eye"></i>
@@ -851,19 +851,19 @@
                                 <div class="strength-text" id="strengthText"></div>
                                 <div class="strength-feedback" id="strengthFeedback"></div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
+                            </div>
+                            
+                            <div class="form-group">
                             <label for="confirmPassword">确认密码</label>
                             <div class="input-group">
-                                <i class="fas fa-lock"></i>
+                                    <i class="fas fa-lock"></i>
                                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="请确认密码" required>
                                 <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
                             <label>性别</label>
                             <div class="radio-group">
@@ -884,7 +884,7 @@
                                 </label>
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
                             <label>兴趣爱好</label>
                             <div class="checkbox-group">
@@ -914,33 +914,33 @@
                                 </label>
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
                             <label for="region">所属地区</label>
                             <div class="input-group">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <select id="region" name="region" required>
-                                    <option value="">请选择地区</option>
-                                    <option value="beijing">北京市</option>
-                                    <option value="shanghai">上海市</option>
-                                    <option value="guangzhou">广州市</option>
-                                    <option value="shenzhen">深圳市</option>
-                                    <option value="hangzhou">杭州市</option>
-                                    <option value="nanjing">南京市</option>
-                                    <option value="wuhan">武汉市</option>
-                                    <option value="chengdu">成都市</option>
-                                    <option value="xian">西安市</option>
-                                    <option value="nanchang">南昌市</option>
+                            <select id="region" name="region" required>
+                                <option value="">请选择地区</option>
+                                <option value="beijing">北京市</option>
+                                <option value="shanghai">上海市</option>
+                                <option value="guangzhou">广州市</option>
+                                <option value="shenzhen">深圳市</option>
+                                <option value="hangzhou">杭州市</option>
+                                <option value="nanjing">南京市</option>
+                                <option value="wuhan">武汉市</option>
+                                <option value="chengdu">成都市</option>
+                                <option value="xian">西安市</option>
+                                <option value="nanchang">南昌市</option>
                                     <option value="other">其他地区</option>
-                                </select>
+                            </select>
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
                             <label for="intro">个人简介</label>
                             <textarea id="intro" name="intro" rows="3" placeholder="请简单介绍一下自己..."></textarea>
                         </div>
-
+                        
                         <label class="checkbox-container">
                             <input type="checkbox" id="agreeTerms" required>
                             我同意用户协议和隐私政策
@@ -950,7 +950,7 @@
                             <i class="fas fa-user-plus"></i>
                             注册账户
                         </button>
-
+                        
                         <div class="auth-links">
                             <a href="login.html">已有账户？立即登录</a>
                         </div>
@@ -1261,4 +1261,4 @@
     <!-- 认证管理器 -->
     <script src="assets/js/modules/auth-manager.js"></script>
 </body>
-</html> 
+</html>

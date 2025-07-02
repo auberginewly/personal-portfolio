@@ -1,0 +1,407 @@
+/* music-player.css - 音乐播放器样式 */
+
+/* 音乐控制器主容器 */
+.music-control {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 15px 20px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 1000;
+    transform: translateY(100px);
+    opacity: 0;
+    animation: musicControlSlideIn 0.8s ease-out 1s forwards;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 320px;
+    min-width: 60px;
+    overflow: hidden;
+}
+
+.music-control:hover {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px);
+}
+
+/* 音乐图标 */
+.music-icon {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.music-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.music-icon:hover::before {
+    transform: translateX(100%);
+}
+
+.music-icon i {
+    color: white;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.music-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(135, 206, 235, 0.4);
+}
+
+.music-icon:active {
+    transform: scale(0.95);
+}
+
+/* 播放状态动画 */
+.music-icon.playing {
+    animation: musicPulse 2s ease-in-out infinite;
+}
+
+.music-icon.playing::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    opacity: 0;
+    animation: musicRipple 1.5s ease-out infinite;
+}
+
+/* 音乐信息区域 */
+.music-info {
+    flex: 1;
+    min-width: 0;
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: musicInfoSlideIn 0.5s ease-out 1.5s forwards;
+}
+
+.music-title {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 音乐进度条 */
+.music-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(135, 206, 235, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0 2px 2px 0;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 音量控制区域 */
+.music-volume {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transform: translateX(10px);
+    animation: musicVolumeSlideIn 0.5s ease-out 1.8s forwards;
+}
+
+.music-volume i {
+    color: var(--primary-color);
+    font-size: 14px;
+    width: 16px;
+    text-align: center;
+}
+
+/* 音量滑块 */
+.volume-slider {
+    width: 60px;
+    height: 4px;
+    background: rgba(135, 206, 235, 0.2);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 3px 8px rgba(135, 206, 235, 0.4);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.volume-slider::-moz-range-track {
+    height: 4px;
+    background: rgba(135, 206, 235, 0.2);
+    border-radius: 2px;
+    border: none;
+}
+
+/* 动画定义 */
+@keyframes musicControlSlideIn {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes musicInfoSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes musicVolumeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes musicPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes musicRipple {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
+}
+
+/* 简化模式（窄屏或收起状态） */
+.music-control.compact {
+    width: 60px;
+    padding: 15px;
+    justify-content: center;
+}
+
+.music-control.compact .music-info,
+.music-control.compact .music-volume {
+    display: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .music-control {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 15px;
+        gap: 10px;
+        max-width: 280px;
+    }
+    
+    .music-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .music-icon i {
+        font-size: 16px;
+    }
+    
+    .music-title {
+        font-size: 12px;
+    }
+    
+    .volume-slider {
+        width: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .music-control {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px;
+        max-width: 200px;
+    }
+    
+    .music-info {
+        display: none;
+    }
+    
+    .music-volume {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .volume-slider {
+        width: 40px;
+        transform: rotate(-90deg);
+    }
+}
+
+/* 暗色主题适配 */
+@media (prefers-color-scheme: dark) {
+    .music-control {
+        background: rgba(30, 30, 30, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+    
+    .music-control:hover {
+        background: rgba(20, 20, 20, 0.98);
+    }
+    
+    .music-title {
+        color: #ffffff;
+    }
+    
+    .music-volume i {
+        color: var(--primary-color);
+    }
+}
+
+/* 减少动画（尊重用户偏好） */
+@media (prefers-reduced-motion: reduce) {
+    .music-control,
+    .music-icon,
+    .music-info,
+    .music-volume,
+    .volume-slider::-webkit-slider-thumb {
+        animation: none;
+        transition: none;
+    }
+    
+    .music-icon.playing::after {
+        animation: none;
+    }
+}
+
+/* 音频波形效果（可选） */
+.music-control.playing .music-icon::before {
+    background: linear-gradient(45deg, 
+        transparent 20%, 
+        rgba(255,255,255,0.1) 25%, 
+        rgba(255,255,255,0.2) 50%, 
+        rgba(255,255,255,0.1) 75%, 
+        transparent 80%);
+    animation: musicWave 2s ease-in-out infinite;
+}
+
+@keyframes musicWave {
+    0%, 100% { transform: translateX(-100%) skewX(-10deg); }
+    50% { transform: translateX(100%) skewX(10deg); }
+}
+
+/* 工具提示样式 */
+.music-control [title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1001;
+    animation: tooltipFadeIn 0.3s ease;
+}
+
+@keyframes tooltipFadeIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(5px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+} 

@@ -1043,6 +1043,31 @@
     margin-top: 0.5rem;
 }
 
+/* 音频容器样式 */
+.audio-container {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(135, 206, 235, 0.05), rgba(76, 175, 80, 0.05));
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(135, 206, 235, 0.2);
+}
+
+.audio-container audio {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.audio-caption {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
 .dynamic-content {
     margin: 2rem 0;
     padding: 1rem;
