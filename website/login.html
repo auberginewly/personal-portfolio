@@ -832,34 +832,42 @@
             const password = document.getElementById('password').value;
             const remember = document.getElementById('remember').checked;
 
-            // 验证邮箱格式
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('请输入正确的邮箱格式');
+            if (!email || !password) {
+                alert('请填写完整的登录信息');
                 return;
             }
 
-            // 模拟登录
-            if (email && password) {
-                // 使用认证管理器保存登录状态
-                if (window.getAuthManager) {
-                    const authManager = window.getAuthManager();
-                    if (authManager) {
-                        authManager.login(email, remember);
+            // 使用认证管理器进行登录验证
+            if (window.getAuthManager) {
+                const authManager = window.getAuthManager();
+                if (authManager) {
+                    const result = authManager.authenticate(email, password);
+                    if (result.success) {
+                        authManager.login(result.user, remember);
+                        alert('登录成功！正在跳转到首页...');
+                        window.location.href = 'index.html?login=success';
+                    } else {
+                        alert(result.message);
                     }
-                } else {
-                    // 降级方案：直接设置localStorage
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('userEmail', email);
-                    if (remember) {
-                        localStorage.setItem('rememberLogin', 'true');
-                    }
+                    return;
                 }
-                
+            }
+
+            // 降级方案：基本验证
+            if (email === 'admin' && password === 'admin') {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('currentUser', JSON.stringify({
+                    id: 0,
+                    email: 'admin',
+                    isAdmin: true
+                }));
+                if (remember) {
+                    localStorage.setItem('rememberLogin', 'true');
+                }
                 alert('登录成功！正在跳转到首页...');
                 window.location.href = 'index.html?login=success';
             } else {
-                alert('请填写完整的登录信息');
+                alert('用户名或密码错误');
             }
         });
     </script>

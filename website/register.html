@@ -535,6 +535,41 @@
             font-weight: 400;
         }
 
+        /* 密码强度指示器样式 */
+        .password-strength {
+            margin-top: 8px;
+            padding: 8px 0;
+        }
+
+        .strength-bar {
+            width: 100%;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            background: #ff4757;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .strength-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .strength-feedback {
+            font-size: 0.75rem;
+            color: #718096;
+            display: none;
+        }
+
         .auth-btn {
             width: 100%;
             padding: 12px 20px;
@@ -809,6 +844,13 @@
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </div>
+                            <div class="password-strength" id="passwordStrength" style="display: none;">
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="strengthFill"></div>
+                                </div>
+                                <div class="strength-text" id="strengthText"></div>
+                                <div class="strength-feedback" id="strengthFeedback"></div>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -1042,6 +1084,17 @@
             }
         }
 
+        // 密码强度检测
+        document.getElementById('password').addEventListener('input', (e) => {
+            const password = e.target.value;
+            if (window.getAuthManager) {
+                const authManager = window.getAuthManager();
+                if (authManager) {
+                    authManager.updatePasswordStrength(password);
+                }
+            }
+        });
+
         // 表单提交处理
         document.getElementById('registerForm').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -1055,8 +1108,14 @@
             const intro = document.getElementById('intro').value;
             const agreeTerms = document.getElementById('agreeTerms').checked;
 
+            // 基本验证
             if (!agreeTerms) {
                 alert('请同意用户协议和隐私政策');
+                return;
+            }
+
+            if (!email || !phone || !password || !confirmPassword || !region) {
+                alert('请填写完整的注册信息');
                 return;
             }
 
@@ -1077,24 +1136,46 @@
                 return;
             }
 
-            if (email && phone && password && gender && region) {
-                // 收集兴趣爱好
-                const hobbyValues = Array.from(hobbies).map(cb => cb.value);
-                
-                console.log('注册信息：', {
-                    email,
-                    phone,
-                    gender: gender.value,
-                    hobbies: hobbyValues,
-                    region,
-                    intro
-                });
-                
-                alert('注册成功！请登录您的账户');
-                window.location.href = 'login.html';
-            } else {
-                alert('请填写完整的注册信息');
+            // 收集兴趣爱好
+            const hobbyValues = Array.from(hobbies).map(cb => cb.value);
+            
+            // 使用认证管理器进行注册
+            if (window.getAuthManager) {
+                const authManager = window.getAuthManager();
+                if (authManager) {
+                    const userData = {
+                        email,
+                        phone,
+                        password,
+                        gender: gender.value,
+                        hobbies: hobbyValues,
+                        region,
+                        intro
+                    };
+                    
+                    const result = authManager.register(userData);
+                    if (result.success) {
+                        alert(result.message + ' 请登录您的账户');
+                        window.location.href = 'login.html';
+                    } else {
+                        alert(result.message);
+                    }
+                    return;
+                }
             }
+
+            // 降级方案：简单注册成功提示
+            console.log('注册信息：', {
+                email,
+                phone,
+                gender: gender.value,
+                hobbies: hobbyValues,
+                region,
+                intro
+            });
+            
+            alert('注册成功！请登录您的账户');
+            window.location.href = 'login.html';
         });
     </script>
 </body>
