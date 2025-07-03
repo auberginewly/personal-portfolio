@@ -262,39 +262,69 @@ class PageMusicManager {
     }
     
     init() {
-        this.createMusicControls();
-        this.bindHoverEvents();
-        this.loadPageMusic();
+        console.log('🎵 PageMusicManager初始化开始');
+        console.log('📍 当前页面:', this.currentPage);
+        console.log('🎼 可用轨道:', Object.keys(this.musicTracks));
+        
+        try {
+            this.createMusicControls();
+            this.bindHoverEvents();
+            this.loadPageMusic();
+            console.log('✅ PageMusicManager初始化完成');
+        } catch (error) {
+            console.error('❌ PageMusicManager初始化失败:', error);
+            throw error;
+        }
     }
     
     // 获取当前页面类型
     getCurrentPage() {
-        const path = window.location.pathname;
-        if (path.includes('index.html') || path === '/' || path.endsWith('/')) {
+        const path = window.location.pathname.toLowerCase();
+        console.log('当前路径:', path);
+        
+        // 更健壮的页面检测逻辑，支持有无.html扩展名的情况
+        if (path.includes('index') || path === '/' || path.endsWith('/') || path === '' || path === '/index') {
             return 'index';
-        } else if (path.includes('skills.html')) {
+        } else if (path.includes('skills')) {
             return 'skills';
-        } else if (path.includes('projects.html')) {
+        } else if (path.includes('projects')) {
             return 'projects';
-        } else if (path.includes('blog-list.html')) {
+        } else if (path.includes('blog-list') || path.includes('blog_list')) {
             return 'blog-list';
-        } else if (path.includes('todo.html')) {
+        } else if (path.includes('todo')) {
             return 'todo';
         }
-        return null;
+        
+        // 如果没有匹配到具体页面，默认返回index
+        console.log('未匹配到具体页面，默认使用index配置');
+        return 'index';
     }
     
     // 创建音乐控制器UI
     createMusicControls() {
+        // 检查是否已存在音乐控制器
+        const existingControl = document.querySelector('.music-control');
+        if (existingControl) {
+            console.log('🔄 发现已存在的音乐控制器，移除旧的');
+            existingControl.remove();
+        }
+        
+        console.log('🎛️ 创建音乐控制器UI');
         const musicControl = document.createElement('div');
         musicControl.className = 'music-control';
+        
+        // 获取当前页面的歌曲名称
+        const songName = this.currentPage && this.musicTracks[this.currentPage] 
+            ? this.musicTracks[this.currentPage].name 
+            : 'BABYMONSTER - Stuck In The Middle';
+        
         musicControl.innerHTML = `
             <div class="music-icon" title="点击播放/暂停音乐">
                 <i class="fas fa-${this.audioPlayer.isPlaying ? 'pause' : 'play'}"></i>
             </div>
             <div class="music-info">
                 <div class="music-title-container">
-                    <span class="music-title">BABYMONSTER - Stuck In The Middle</span>
+                    <span class="music-title">${songName}</span>
                 </div>
                 <div class="music-progress-container">
                     <span class="current-time">0:00</span>
@@ -309,6 +339,7 @@ class PageMusicManager {
         `;
         
         document.body.appendChild(musicControl);
+        console.log('✅ 音乐控制器UI已添加到页面');
         
         // 添加滚动CSS样式
         this.addScrollingStyles();
@@ -556,27 +587,30 @@ class PageMusicManager {
 let pageMusicManager = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 检查是否在支持的页面
-    const path = window.location.pathname;
-    const supportedPages = ['index.html', 'skills.html', 'projects.html', 'blog-list.html', 'todo.html'];
-    const isSupported = supportedPages.some(page => path.includes(page)) || 
-                       path === '/' || path.endsWith('/');
+    // 更健壮的页面检测，与getCurrentPage()保持一致
+    const path = window.location.pathname.toLowerCase();
+    console.log('DOMContentLoaded - 检测路径:', path);
     
-    if (isSupported) {
-        try {
-            pageMusicManager = new PageMusicManager();
-            
-            // 延迟更新按钮状态，确保DOM已加载
-            setTimeout(() => {
-                if (pageMusicManager) {
-                    pageMusicManager.updatePlayButton();
-                }
-            }, 100);
-            
-            console.log('音乐播放器已初始化 - 点击播放按钮开始播放');
-        } catch (error) {
-            console.warn('音乐播放器初始化失败:', error);
-        }
+    // 支持的页面模式，不依赖具体扩展名
+    const supportedPatterns = ['index', 'skills', 'projects', 'blog-list', 'blog_list', 'todo'];
+    const isSupported = supportedPatterns.some(pattern => path.includes(pattern)) || 
+                       path === '/' || path.endsWith('/') || path === '';
+    
+    // 总是初始化音乐播放器，增强兼容性
+    try {
+        pageMusicManager = new PageMusicManager();
+        
+        // 延迟更新按钮状态，确保DOM已加载
+        setTimeout(() => {
+            if (pageMusicManager) {
+                pageMusicManager.updatePlayButton();
+            }
+        }, 100);
+        
+        console.log('音乐播放器已初始化 - 点击播放按钮开始播放');
+        console.log('支持状态:', isSupported ? '支持' : '默认支持');
+    } catch (error) {
+        console.warn('音乐播放器初始化失败:', error);
     }
 });
 
