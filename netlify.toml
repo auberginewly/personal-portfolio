@@ -9,13 +9,6 @@
   # Node.js 版本
   NODE_VERSION = "18"
 
-# 重定向规则
-[[redirects]]
-  # SPA路由支持
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
 # 自定义头部
 [[headers]]
   for = "/*"
@@ -34,14 +27,4 @@
     # 静态资源长期缓存
     Cache-Control = "public, max-age=31536000, immutable"
 
-# 表单处理（如果你有联系表单）
-# [[redirects]]
-#   from = "/contact"
-#   to = "/.netlify/functions/contact"
-#   status = 200
-
-# 404页面
-[[redirects]]
-  from = "/404"
-  to = "/404.html"
-  status = 404
+# 自然404处理 - Netlify会自动处理找不到的文件
