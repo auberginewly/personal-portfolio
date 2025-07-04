@@ -521,52 +521,67 @@ function updateTodoStats() {
 function initBlogSearch() {
     const searchForm = document.getElementById('searchForm');
     const searchInput = document.getElementById('searchInput');
-    const articlesContainer = document.getElementById('articlesContainer');
-    const searchResults = document.getElementById('searchResults');
-    const blogGrid = document.getElementById('blogGrid');
+    const searchBtn = document.getElementById('searchBtn');
+    const clearBtn = document.getElementById('clearBtn');
     
-    if (searchForm && searchInput && articlesContainer) {
-        searchForm.addEventListener('submit', (event) => {
-            event.preventDefault();
+    if (!searchForm || !searchInput) return;
+    
+    // 搜索表单提交
+    searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const query = searchInput.value.trim();
+        if (query) {
+            performSearch(query);
+        }
+    });
+    
+    // 搜索按钮点击
+    if (searchBtn) {
+        searchBtn.addEventListener('click', function(e) {
+            e.preventDefault();
             const query = searchInput.value.trim();
-            
             if (query) {
-                // 跳转到带参数的URL，模拟反射型XSS
-                const currentUrl = new URL(window.location);
-                currentUrl.searchParams.set('query', query);
-                window.history.pushState({}, '', currentUrl);
-                
-                // 显示搜索结果
-                displaySearchResults(query);
+                performSearch(query);
             }
         });
-        
-        // 页面加载时检查URL参数并显示
-        const urlParams = new URLSearchParams(window.location.search);
-        const searchQuery = urlParams.get('query');
-        
-        if (searchQuery) {
-            searchInput.value = searchQuery;
-            displaySearchResults(searchQuery);
+    }
+    
+    // 清空按钮
+    if (clearBtn) {
+        clearBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            searchInput.value = '';
+            clearSearchResults();
+        });
+    }
+    
+    // 回车搜索
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const query = searchInput.value.trim();
+            if (query) {
+                performSearch(query);
+            }
         }
-    }
-    
-    // 博客卡片筛选
-    const categoryFilter = document.getElementById('categoryFilter');
-    const tagFilter = document.getElementById('tagFilter');
-    
-    if (categoryFilter) {
-        categoryFilter.addEventListener('change', filterBlogs);
-    }
-    
-    if (tagFilter) {
-        tagFilter.addEventListener('change', filterBlogs);
-    }
+    });
 }
 
-// 显示搜索结果 (XSS漏洞点)
+// 执行搜索
+function performSearch(query) {
+    // 显示搜索结果
+    displaySearchResults(query);
+    
+    // 添加到搜索历史
+    addToSearchHistory(query);
+    
+    console.log('搜索查询:', query);
+}
+
+// 显示搜索结果 (含有XSS漏洞)
 function displaySearchResults(query) {
     const articlesContainer = document.getElementById('articlesContainer');
+    const articlesFallback = document.getElementById('articlesFallback');
     const searchResults = document.getElementById('searchResults');
     const blogGrid = document.getElementById('blogGrid');
     
@@ -574,24 +589,41 @@ function displaySearchResults(query) {
     
     // 故意使用 innerHTML 模拟反射型XSS漏洞
     // 正确防护应该使用 textContent 或者对内容进行HTML编码
-    articlesContainer.innerHTML = `<div class="search-result-header"><h2>搜索结果：${decodeURIComponent(query)}</h2><p>找到相关文章...</p></div>`;
+    articlesContainer.innerHTML = `
+        <div class="search-result-header">
+            <h2>搜索结果：${query}</h2>
+            <p>您搜索的关键词：${query}</p>
+            <div class="search-stats">找到相关文章 3 篇</div>
+        </div>
+    `;
     
-    // 模拟搜索结果
+    // 搜索结果内容也直接插入用户输入 (另一个XSS点)
     const mockResults = `
         <div class="search-result-item">
-            <h3><a href="blog-detail.html?id=github-actions">GitHub Actions 自动化工作流</a></h3>
-            <p>探索 GitHub Actions 的强大功能，实现博客自动部署、代码质量检查等自动化工作流程。关键词: <mark>${escapeHtml(decodeURIComponent(query))}</mark></p>
+            <h3><a href="https://auberginewly.site/2025/05/05/github-actions">GitHub Actions 自动化工作流</a></h3>
+            <p>探索 GitHub Actions 的强大功能，实现博客自动部署、代码质量检查等自动化工作流程。</p>
+            <p class="search-highlight">匹配关键词: <span class="highlight">${query}</span></p>
             <div class="search-meta">
                 <span>2025-05-05</span>
                 <span>琐碎问题解决</span>
             </div>
         </div>
         <div class="search-result-item">
-            <h3><a href="blog-detail.html?id=50projects">50 Projects 50 Days（持续更新）</a></h3>
-            <p>前端学习挑战项目，通过50个小项目练习和提升前端开发技能。匹配内容: <mark>${escapeHtml(decodeURIComponent(query))}</mark></p>
+            <h3><a href="https://auberginewly.site/2025/04/29/50projects">50 Projects 50 Days（持续更新）</a></h3>
+            <p>前端学习挑战项目，通过50个小项目练习和提升前端开发技能。</p>
+            <p class="search-highlight">相关内容: <span class="highlight">${query}</span></p>
             <div class="search-meta">
                 <span>2025-04-29</span>
                 <span>学习笔记</span>
+            </div>
+        </div>
+        <div class="search-result-item">
+            <h3><a href="https://auberginewly.site/2025/04/25/js-dom">JavaScript DOM 操作实践</a></h3>
+            <p>深入学习 JavaScript DOM 操作技巧，提升前端开发能力。</p>
+            <p class="search-highlight">关键词匹配: <span class="highlight">${query}</span></p>
+            <div class="search-meta">
+                <span>2025-04-25</span>
+                <span>前端技术</span>
             </div>
         </div>
     `;
@@ -603,45 +635,89 @@ function displaySearchResults(query) {
     if (blogGrid) {
         blogGrid.style.display = 'none';
     }
+    if (articlesFallback) {
+        articlesFallback.style.display = 'none';
+    }
 }
 
-// 博客筛选
-function filterBlogs() {
-    const categoryFilter = document.getElementById('categoryFilter');
-    const tagFilter = document.getElementById('tagFilter');
-    const blogCards = document.querySelectorAll('.blog-card');
+// 清空搜索结果
+function clearSearchResults() {
+    const searchResults = document.getElementById('searchResults');
+    const blogGrid = document.getElementById('blogGrid');
+    const articlesFallback = document.getElementById('articlesFallback');
     
-    const selectedCategory = categoryFilter ? categoryFilter.value : '';
-    const selectedTag = tagFilter ? tagFilter.value : '';
+    if (searchResults) {
+        searchResults.style.display = 'none';
+    }
+    if (blogGrid) {
+        blogGrid.style.display = 'block';
+    }
+    if (articlesFallback) {
+        articlesFallback.style.display = 'grid';
+    }
+}
+
+// 添加搜索历史 (存储型XSS漏洞)
+function addToSearchHistory(query) {
+    try {
+        let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+        
+        // 避免重复
+        if (!searchHistory.includes(query)) {
+            searchHistory.unshift(query);
+            // 只保留最近10次搜索
+            if (searchHistory.length > 10) {
+                searchHistory = searchHistory.slice(0, 10);
+            }
+            localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+        }
+        
+        // 更新搜索历史显示
+        updateSearchHistoryDisplay();
+    } catch (error) {
+        console.error('保存搜索历史失败:', error);
+    }
+}
+
+// 更新搜索历史显示 (存储型XSS漏洞)
+function updateSearchHistoryDisplay() {
+    const historyContainer = document.getElementById('searchHistory');
+    if (!historyContainer) return;
     
-    blogCards.forEach(card => {
-        const cardCategory = card.dataset.category;
-        const cardTags = card.dataset.tags;
+    try {
+        const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
         
-        let shouldShow = true;
-        
-        if (selectedCategory && cardCategory !== selectedCategory) {
-            shouldShow = false;
+        if (searchHistory.length === 0) {
+            historyContainer.innerHTML = '<p class="no-history">暂无搜索历史</p>';
+            return;
         }
         
-        if (selectedTag && (!cardTags || !cardTags.includes(selectedTag))) {
-            shouldShow = false;
-        }
+        // 故意使用 innerHTML 直接插入历史记录 (存储型XSS漏洞)
+        let historyHTML = '<h4>搜索历史</h4><ul class="history-list">';
+        searchHistory.forEach(item => {
+            historyHTML += `<li class="history-item">
+                <span class="history-query" onclick="performSearch('${item}')">${item}</span>
+                <button class="history-delete" onclick="removeFromHistory('${item}')">×</button>
+            </li>`;
+        });
+        historyHTML += '</ul>';
         
-        if (shouldShow) {
-            card.style.display = 'block';
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'scale(1)';
-            }, 100);
-        } else {
-            card.style.opacity = '0';
-            card.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                card.style.display = 'none';
-            }, 300);
-        }
-    });
+        historyContainer.innerHTML = historyHTML;
+    } catch (error) {
+        console.error('更新搜索历史显示失败:', error);
+    }
+}
+
+// 从历史记录中移除
+function removeFromHistory(query) {
+    try {
+        let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+        searchHistory = searchHistory.filter(item => item !== query);
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+        updateSearchHistoryDisplay();
+    } catch (error) {
+        console.error('移除搜索历史失败:', error);
+    }
 }
 
 // 滚动动画

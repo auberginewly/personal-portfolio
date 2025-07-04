@@ -28,6 +28,8 @@
 .hero-text .highlight {
     color: var(--primary-color);
     position: relative;
+    background: none;
+    font-weight: 700;
 }
 
 .hero-text .subtitle {
