@@ -52,15 +52,22 @@ class AudioPlayer {
                 this.audio.volume = this.volume;
                 if (this.currentTrack) {
                     this.audio.src = this.currentTrack;
-                    this.audio.currentTime = state.currentTime || 0;
                     
-                    // 如果之前在播放，恢复播放
-                    if (this.isPlaying) {
-                        this.audio.play().catch(e => {
-                            console.log('自动播放被阻止，需要用户交互');
-                            this.isPlaying = false;
-                        });
-                    }
+                    // 监听音频加载完成事件，然后恢复播放进度
+                    this.audio.addEventListener('loadedmetadata', () => {
+                        this.audio.currentTime = state.currentTime || 0;
+                        
+                        // 如果之前在播放，恢复播放
+                        if (this.isPlaying) {
+                            this.audio.play().catch(e => {
+                                console.log('自动播放被阻止，需要用户交互');
+                                this.isPlaying = false;
+                            });
+                        }
+                    }, { once: true });
+                    
+                    // 立即加载音频元数据
+                    this.audio.load();
                 }
             }
         }
@@ -122,14 +129,46 @@ class AudioPlayer {
     // 设置音乐轨道
     setTrack(trackUrl, trackName = '') {
         if (this.currentTrack !== trackUrl) {
-            this.currentTrack = trackUrl;
-            this.audio.src = trackUrl;
+            // 检查是否是相同音频文件的不同路径
+            const currentFileName = this.currentTrack ? this.currentTrack.split('/').pop() : '';
+            const newFileName = trackUrl.split('/').pop();
+            
+            if (currentFileName === newFileName && currentFileName !== '') {
+                // 相同音频文件，只更新路径，保持播放状态
+                console.log(`🔄 更新音频文件路径: ${this.currentTrack} -> ${trackUrl}`);
+                const wasPlaying = this.isPlaying;
+                const currentTime = this.audio ? this.audio.currentTime : 0;
+                
+                this.currentTrack = trackUrl;
+                this.audio.src = trackUrl;
+                
+                // 如果正在播放，恢复播放状态
+                if (wasPlaying) {
+                    this.audio.addEventListener('loadedmetadata', () => {
+                        this.audio.currentTime = currentTime;
+                        this.audio.play().catch(e => {
+                            console.warn('路径更新后恢复播放失败:', e);
+                        });
+                    }, { once: true });
+                } else {
+                    this.audio.addEventListener('loadedmetadata', () => {
+                        this.audio.currentTime = currentTime;
+                    }, { once: true });
+                }
+                
+                this.audio.load();
+            } else {
+                // 完全不同的音频文件
+                this.currentTrack = trackUrl;
+                this.audio.src = trackUrl;
+                console.log(`设置音乐轨道: ${trackName || trackUrl}`);
+            }
+            
             this.saveState();
-            console.log(`设置音乐轨道: ${trackName || trackUrl}`);
         }
     }
     
-        // 播放音乐（稳定音量）
+    // 播放音乐（稳定音量）
     play() {
         if (!this.audio.src) return;
         
@@ -286,6 +325,8 @@ class PageMusicManager {
         if (path.includes('index') || path === '/' || path.endsWith('/') || path === '' || path === '/index') {
             return 'index';
         } else if (path.includes('skills')) {
+            // 无论是skills.html还是skills/子页面，都返回skills
+            console.log('检测到skills页面或子页面');
             return 'skills';
         } else if (path.includes('projects')) {
             return 'projects';
@@ -547,9 +588,60 @@ class PageMusicManager {
         if (this.currentPage && this.musicTracks[this.currentPage]) {
             const track = this.musicTracks[this.currentPage];
             
-            // 如果当前没有轨道或轨道不同，才设置新轨道
-            if (!this.audioPlayer.currentTrack || this.audioPlayer.currentTrack !== track.url) {
-                this.audioPlayer.setTrack(track.url, track.name);
+            // 根据当前页面路径调整音乐文件路径
+            let audioUrl = track.url;
+            const path = window.location.pathname.toLowerCase();
+            
+            // 如果是skills子页面，需要修正路径
+            if (path.includes('skills/')) {
+                // 将 assets/audio/ 改为 ../assets/audio/
+                audioUrl = track.url.replace('assets/', '../assets/');
+                console.log('🔧 Skills子页面路径修正:', audioUrl);
+            }
+            
+            // 检查当前轨道是否是同一首歌（忽略路径差异）
+            const currentFileName = this.audioPlayer.currentTrack ? this.audioPlayer.currentTrack.split('/').pop() : '';
+            const newFileName = audioUrl.split('/').pop();
+            
+            console.log('📀 比较音频文件:');
+            console.log('  当前:', currentFileName);
+            console.log('  新的:', newFileName);
+            
+            // 如果是相同的音频文件但路径不同，更新路径但保持播放状态
+            if (currentFileName === newFileName && this.audioPlayer.currentTrack !== audioUrl) {
+                console.log('🔄 相同音乐文件，更新路径但保持播放状态');
+                const wasPlaying = this.audioPlayer.isPlaying;
+                const currentTime = this.audioPlayer.audio ? this.audioPlayer.audio.currentTime : 0;
+                
+                // 更新音频源
+                this.audioPlayer.currentTrack = audioUrl;
+                this.audioPlayer.audio.src = audioUrl;
+                
+                // 如果正在播放，需要重新加载并恢复播放
+                if (wasPlaying) {
+                    this.audioPlayer.audio.addEventListener('loadedmetadata', () => {
+                        this.audioPlayer.audio.currentTime = currentTime;
+                        this.audioPlayer.audio.play().catch(e => {
+                            console.warn('恢复播放失败:', e);
+                        });
+                    }, { once: true });
+                } else {
+                    // 如果未播放，只需恢复时间位置
+                    this.audioPlayer.audio.addEventListener('loadedmetadata', () => {
+                        this.audioPlayer.audio.currentTime = currentTime;
+                    }, { once: true });
+                }
+                
+                this.audioPlayer.audio.load();
+                this.audioPlayer.saveState();
+            }
+            // 如果是完全不同的轨道，才设置新轨道
+            else if (!this.audioPlayer.currentTrack || currentFileName !== newFileName) {
+                console.log('🎵 设置新音乐轨道');
+                this.audioPlayer.setTrack(audioUrl, track.name);
+            }
+            else {
+                console.log('✅ 音乐轨道已正确设置，无需更改');
             }
         }
     }
