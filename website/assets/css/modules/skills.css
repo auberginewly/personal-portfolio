@@ -225,11 +225,3 @@
     box-shadow: 0 10px 30px rgba(40, 167, 69, 0.2);
 }
 
-.special-card:hover h3 {
-    color: #28a745;
-}
-
-/* 临时测试样式 - 如果看到红色边框说明CSS生效了 */
-.skill-card:not(.learning-card):not(.product-card) {
-    border-left: 6px solid #ff0000 !important;
-}
