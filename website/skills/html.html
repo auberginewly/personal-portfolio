@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML - 技能详情 - auberginewly</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/modules/music-player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .skill-detail {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+        .skill-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #e34f26 0%, #f06529 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        .skill-header .skill-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .content h2 {
+            color: #333;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        .content h3 {
+            color: #666;
+            margin-top: 25px;
+        }
+        .content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .content li {
+            margin: 8px 0;
+        }
+        .highlight {
+            background: linear-gradient(120deg, rgba(135, 206, 235, 0.3) 0%, rgba(135, 206, 235, 0.1) 100%);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🍆 auberginewly</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../skills.html">技术栈</a></li>
+                <li><a href="../projects.html">我的项目</a></li>
+                <li><a href="../blog-list.html">技术博客</a></li>
+                <li><a href="../todo.html">待办事项</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="skill-detail">
+                <a href="../skills.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回技术栈
+                </a>
+                
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h1>HTML</h1>
+                    <p>网页内容的结构标记语言</p>
+                </div>
+
+                <div class="content">
+                    <h2>什么是HTML？</h2>
+                    
+                    <p>HTML（<span class="highlight">HyperText Markup Language</span>，超文本标记语言）是构建网页内容的标准标记语言。它使用<span class="highlight">标签</span>来定义网页的结构和内容，是Web开发的基础技术之一。HTML不是编程语言，而是一种用于描述网页结构的标记语言。</p>
+
+                    <h2>HTML的核心概念</h2>
+                    
+                    <h3>🏷️ 标签和元素</h3>
+                    <ul>
+                        <li><strong>标签（Tag）</strong>：用尖括号包围的关键词，如&lt;h1&gt;、&lt;p&gt;</li>
+                        <li><strong>元素（Element）</strong>：由开始标签、内容和结束标签组成</li>
+                        <li><strong>属性（Attribute）</strong>：标签内的额外信息，如id、class</li>
+                        <li><strong>嵌套结构</strong>：元素可以包含其他元素</li>
+                    </ul>
+
+                    <h3>📋 语义化</h3>
+                    <ul>
+                        <li><strong>语义化标签</strong>：使用有意义的标签表示内容</li>
+                        <li><strong>可访问性</strong>：帮助屏幕阅读器理解页面结构</li>
+                        <li><strong>SEO友好</strong>：搜索引擎更好地理解页面内容</li>
+                        <li><strong>代码可读性</strong>：开发者更容易理解代码结构</li>
+                    </ul>
+
+                    <h3>🔗 超链接</h3>
+                    <ul>
+                        <li><strong>链接（Link）</strong>：连接不同页面或资源</li>
+                        <li><strong>锚点（Anchor）</strong>：页面内部跳转</li>
+                        <li><strong>相对路径</strong>：相对于当前页面的路径</li>
+                        <li><strong>绝对路径</strong>：完整的URL地址</li>
+                    </ul>
+
+                    <h2>HTML5的新特性</h2>
+                    
+                    <h3>🏗️ 语义化标签</h3>
+                    <ul>
+                        <li><strong>&lt;header&gt;</strong>：页面或区块的头部</li>
+                        <li><strong>&lt;nav&gt;</strong>：导航链接</li>
+                        <li><strong>&lt;main&gt;</strong>：页面主要内容</li>
+                        <li><strong>&lt;section&gt;</strong>：页面中的一个区块</li>
+                        <li><strong>&lt;article&gt;</strong>：独立的文章内容</li>
+                        <li><strong>&lt;aside&gt;</strong>：侧边栏内容</li>
+                        <li><strong>&lt;footer&gt;</strong>：页面或区块的底部</li>
+                    </ul>
+
+                    <h3>🎥 多媒体元素</h3>
+                    <ul>
+                        <li><strong>&lt;audio&gt;</strong>：音频文件播放</li>
+                        <li><strong>&lt;video&gt;</strong>：视频文件播放</li>
+                        <li><strong>&lt;canvas&gt;</strong>：绘制图形和动画</li>
+                        <li><strong>&lt;svg&gt;</strong>：可缩放矢量图形</li>
+                    </ul>
+
+                    <h3>📝 表单增强</h3>
+                    <ul>
+                        <li><strong>新的输入类型</strong>：email、tel、date、color等</li>
+                        <li><strong>表单验证</strong>：required、pattern、min/max等属性</li>
+                        <li><strong>占位符</strong>：placeholder属性提供输入提示</li>
+                        <li><strong>自动完成</strong>：autocomplete属性</li>
+                    </ul>
+
+                    <h2>HTML的作用</h2>
+                    
+                    <h3>🏗️ 定义网页结构</h3>
+                    <p>HTML为网页内容提供基本的结构框架，定义了标题、段落、列表、表格等内容的层次关系。</p>
+
+                    <h3>🎯 内容语义化</h3>
+                    <p>通过语义化标签，HTML能够清晰地表达内容的意义和重要性，便于搜索引擎和辅助设备理解。</p>
+
+                    <h3>🔗 创建超链接</h3>
+                    <p>HTML的超链接功能是Web的核心特性，让用户能够在不同页面和资源之间自由导航。</p>
+
+                    <h3>📱 响应式基础</h3>
+                    <p>HTML提供了meta标签等功能，为响应式设计提供了基础支持。</p>
+
+                    <h2>常用HTML标签</h2>
+                    
+                    <h3>📝 文本标签</h3>
+                    <ul>
+                        <li><strong>&lt;h1&gt;-&lt;h6&gt;</strong>：标题，从大到小</li>
+                        <li><strong>&lt;p&gt;</strong>：段落</li>
+                        <li><strong>&lt;strong&gt;</strong>：重要文本（粗体）</li>
+                        <li><strong>&lt;em&gt;</strong>：强调文本（斜体）</li>
+                        <li><strong>&lt;br&gt;</strong>：换行</li>
+                    </ul>
+
+                    <h3>📋 列表标签</h3>
+                    <ul>
+                        <li><strong>&lt;ul&gt;</strong>：无序列表</li>
+                        <li><strong>&lt;ol&gt;</strong>：有序列表</li>
+                        <li><strong>&lt;li&gt;</strong>：列表项</li>
+                        <li><strong>&lt;dl&gt;</strong>：定义列表</li>
+                    </ul>
+
+                    <h3>🖼️ 媒体标签</h3>
+                    <ul>
+                        <li><strong>&lt;img&gt;</strong>：图片</li>
+                        <li><strong>&lt;audio&gt;</strong>：音频</li>
+                        <li><strong>&lt;video&gt;</strong>：视频</li>
+                        <li><strong>&lt;iframe&gt;</strong>：内嵌框架</li>
+                    </ul>
+
+                    <h2>HTML的重要性</h2>
+                    
+                    <ul>
+                        <li><strong>Web的基础</strong>：所有网页都基于HTML构建</li>
+                        <li><strong>易于学习</strong>：语法简单，入门门槛低</li>
+                        <li><strong>标准化</strong>：由W3C维护的国际标准</li>
+                        <li><strong>向后兼容</strong>：新版本保持对旧版本的兼容</li>
+                        <li><strong>跨平台</strong>：在所有浏览器和设备上运行</li>
+                        <li><strong>SEO友好</strong>：搜索引擎优化的基础</li>
+                    </ul>
+
+                    <h2>HTML的发展历程</h2>
+                    
+                    <ul>
+                        <li><strong>1990年</strong>：Tim Berners-Lee创建第一个HTML版本</li>
+                        <li><strong>1995年</strong>：HTML 2.0成为IETF标准</li>
+                        <li><strong>1997年</strong>：HTML 3.2由W3C推荐</li>
+                        <li><strong>1999年</strong>：HTML 4.01发布</li>
+                        <li><strong>2014年</strong>：HTML5成为W3C推荐标准</li>
+                        <li><strong>现在</strong>：HTML持续发展，称为HTML Living Standard</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 auberginewly. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 认证管理器 -->
+    <script src="../assets/js/modules/auth-manager.js"></script>
+    
+    <!-- 音乐播放器 -->
+    <script src="../assets/js/modules/audio-player.js"></script>
+</body>
+</html> 

@@ -34,11 +34,24 @@
     box-shadow: var(--shadow);
     transition: var(--transition);
     text-align: center;
+    text-decoration: none;
+    display: block;
 }
 
 .skill-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover);
+    text-decoration: none;
+}
+
+.skill-card:visited {
+    text-decoration: none;
+}
+
+.skill-card:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    text-decoration: none;
 }
 
 .skill-icon {
@@ -50,6 +63,35 @@
 .skill-card h3 {
     margin-bottom: 1rem;
     color: var(--dark-color);
+}
+
+.skill-card p {
+    color: var(--text-muted);
+}
+
+.skill-card .skill-level span {
+    color: var(--text-muted);
+}
+
+/* 确保技术栈卡片（没有特殊类的卡片）样式正确 */
+.skill-card:not(.learning-card):not(.product-card) {
+    border-left: 4px solid var(--primary-color);
+}
+
+.skill-card:not(.learning-card):not(.product-card) .skill-icon {
+    color: var(--primary-color);
+}
+
+.skill-card:not(.learning-card):not(.product-card) h3 {
+    color: var(--dark-color);
+}
+
+.skill-card:not(.learning-card):not(.product-card) p {
+    color: var(--text-muted);
+}
+
+.skill-card:not(.learning-card):not(.product-card) .skill-level span {
+    color: var(--text-muted);
 }
 
 .skill-level {
@@ -132,6 +174,14 @@
     color: #ffc107;
 }
 
+.learning-card h3 {
+    color: var(--dark-color);
+}
+
+.learning-card p {
+    color: var(--text-muted);
+}
+
 .learning-progress {
     background-color: #ffc107 !important;
 }
@@ -153,23 +203,33 @@
     color: #28a745;
 }
 
+.product-card h3 {
+    color: var(--dark-color);
+}
+
+.product-card p {
+    color: var(--text-muted);
+}
+
 .product-progress {
     background-color: #28a745 !important;
 }
 
 /* 特殊卡片样式（人人都是产品经理） */
-.special-card h3 a {
+.special-card h3 {
     color: var(--dark-color);
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.special-card h3 a:hover {
-    color: #28a745;
-    text-decoration: underline;
 }
 
 .special-card:hover {
     border-left-color: #28a745;
     box-shadow: 0 10px 30px rgba(40, 167, 69, 0.2);
+}
+
+.special-card:hover h3 {
+    color: #28a745;
+}
+
+/* 临时测试样式 - 如果看到红色边框说明CSS生效了 */
+.skill-card:not(.learning-card):not(.product-card) {
+    border-left: 6px solid #ff0000 !important;
 }

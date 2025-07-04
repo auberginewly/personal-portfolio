@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSM - 技能详情 - auberginewly</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/modules/music-player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .skill-detail {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+        .skill-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #6db33f 0%, #5a9f32 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        .skill-header .skill-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .content h2 {
+            color: #333;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        .content h3 {
+            color: #666;
+            margin-top: 25px;
+        }
+        .content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .content li {
+            margin: 8px 0;
+        }
+        .highlight {
+            background: linear-gradient(120deg, rgba(135, 206, 235, 0.3) 0%, rgba(135, 206, 235, 0.1) 100%);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🍆 auberginewly</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../skills.html">技术栈</a></li>
+                <li><a href="../projects.html">我的项目</a></li>
+                <li><a href="../blog-list.html">技术博客</a></li>
+                <li><a href="../todo.html">待办事项</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="skill-detail">
+                <a href="../skills.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回技术栈
+                </a>
+                
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h1>SSM</h1>
+                    <p>Spring + SpringMVC + MyBatis 整合框架</p>
+                </div>
+
+                <div class="content">
+                    <h2>什么是SSM？</h2>
+                    
+                    <p>SSM是<span class="highlight">Spring + SpringMVC + MyBatis</span>三个开源框架的整合，是目前较为流行的Java Web开发技术栈。这三个框架分工明确，Spring负责依赖注入，SpringMVC负责Web层控制，MyBatis负责数据持久化，组合使用能够快速构建企业级Web应用。</p>
+
+                    <h2>SSM框架组成</h2>
+                    
+                    <h3>🌱 Spring框架</h3>
+                    <ul>
+                        <li><strong>IoC容器</strong>：控制反转，管理对象生命周期</li>
+                        <li><strong>DI依赖注入</strong>：减少代码耦合度</li>
+                        <li><strong>AOP切面编程</strong>：横切关注点处理</li>
+                        <li><strong>事务管理</strong>：声明式事务处理</li>
+                    </ul>
+
+                    <h3>🌐 SpringMVC框架</h3>
+                    <ul>
+                        <li><strong>MVC模式</strong>：清晰的分层架构</li>
+                        <li><strong>DispatcherServlet</strong>：前端控制器</li>
+                        <li><strong>Controller控制器</strong>：处理用户请求</li>
+                        <li><strong>视图解析器</strong>：处理视图渲染</li>
+                        <li><strong>数据绑定</strong>：自动参数绑定</li>
+                    </ul>
+
+                    <h3>💾 MyBatis框架</h3>
+                    <ul>
+                        <li><strong>SQL映射</strong>：灵活的SQL语句编写</li>
+                        <li><strong>动态SQL</strong>：条件化SQL构建</li>
+                        <li><strong>结果映射</strong>：自动对象关系映射</li>
+                        <li><strong>缓存机制</strong>：一级和二级缓存</li>
+                        <li><strong>插件机制</strong>：可扩展的插件系统</li>
+                    </ul>
+
+                    <h2>SSM的应用场景</h2>
+                    
+                    <h3>🏢 企业级Web应用</h3>
+                    <p>适合构建中大型企业级Web应用，如管理系统、电商平台、办公系统等。</p>
+
+                    <h3>📊 后台管理系统</h3>
+                    <p>快速开发各种后台管理系统，支持CRUD操作和复杂业务逻辑。</p>
+
+                    <h3>🌐 RESTful API</h3>
+                    <p>构建标准的RESTful Web服务，为前端或移动端提供数据接口。</p>
+
+                    <h3>🔗 微服务基础</h3>
+                    <p>作为微服务架构的基础框架，每个服务使用SSM快速开发。</p>
+
+                    <h2>SSM的技术优势</h2>
+                    
+                    <h3>🔧 分层清晰</h3>
+                    <ul>
+                        <li><strong>表现层</strong>：SpringMVC处理Web请求</li>
+                        <li><strong>业务层</strong>：Spring管理业务组件</li>
+                        <li><strong>持久层</strong>：MyBatis处理数据访问</li>
+                        <li><strong>数据库层</strong>：MySQL等关系型数据库</li>
+                    </ul>
+
+                    <h3>⚡ 开发效率</h3>
+                    <ul>
+                        <li><strong>代码简洁</strong>：注解驱动开发</li>
+                        <li><strong>配置灵活</strong>：XML和注解混合配置</li>
+                        <li><strong>热部署</strong>：支持代码热替换</li>
+                        <li><strong>自动化测试</strong>：集成测试框架</li>
+                    </ul>
+
+                    <h3>🛡️ 稳定可靠</h3>
+                    <ul>
+                        <li><strong>成熟框架</strong>：经过大量项目验证</li>
+                        <li><strong>社区活跃</strong>：丰富的文档和教程</li>
+                        <li><strong>扩展性强</strong>：支持各种第三方集成</li>
+                        <li><strong>维护简单</strong>：模块化设计便于维护</li>
+                    </ul>
+
+                    <h2>SSM核心配置</h2>
+                    
+                    <h3>🔧 Spring配置</h3>
+                    <ul>
+                        <li><strong>Bean定义</strong>：配置应用组件</li>
+                        <li><strong>依赖注入</strong>：@Autowired自动装配</li>
+                        <li><strong>切面配置</strong>：@Aspect声明切面</li>
+                        <li><strong>事务配置</strong>：@Transactional声明事务</li>
+                    </ul>
+
+                    <h3>🌐 SpringMVC配置</h3>
+                    <ul>
+                        <li><strong>控制器</strong>：@Controller注解</li>
+                        <li><strong>请求映射</strong>：@RequestMapping路径映射</li>
+                        <li><strong>参数绑定</strong>：@RequestParam参数注入</li>
+                        <li><strong>异常处理</strong>：@ExceptionHandler异常捕获</li>
+                    </ul>
+
+                    <h3>💾 MyBatis配置</h3>
+                    <ul>
+                        <li><strong>Mapper接口</strong>：数据访问接口</li>
+                        <li><strong>SQL映射文件</strong>：XML配置SQL语句</li>
+                        <li><strong>结果映射</strong>：ResultMap配置</li>
+                        <li><strong>动态SQL</strong>：if、foreach等标签</li>
+                    </ul>
+
+                    <h2>SSM开发流程</h2>
+                    
+                    <h3>📋 项目搭建</h3>
+                    <ul>
+                        <li><strong>Maven依赖</strong>：引入SSM相关jar包</li>
+                        <li><strong>目录结构</strong>：标准的Maven项目结构</li>
+                        <li><strong>配置文件</strong>：Spring、SpringMVC、MyBatis配置</li>
+                        <li><strong>数据库连接</strong>：数据源配置</li>
+                    </ul>
+
+                    <h3>🔧 编码开发</h3>
+                    <ul>
+                        <li><strong>实体类</strong>：对应数据库表的POJO类</li>
+                        <li><strong>Dao层</strong>：MyBatis Mapper接口</li>
+                        <li><strong>Service层</strong>：业务逻辑处理</li>
+                        <li><strong>Controller层</strong>：Web请求处理</li>
+                    </ul>
+
+                    <h2>学习SSM的重要性</h2>
+                    
+                    <ul>
+                        <li><strong>Java开发基础</strong>：Java Web开发的经典框架组合</li>
+                        <li><strong>企业应用</strong>：大多数Java项目都在使用</li>
+                        <li><strong>技术进阶</strong>：学习Spring Boot的基础</li>
+                        <li><strong>就业优势</strong>：Java开发工程师的必备技能</li>
+                        <li><strong>架构理解</strong>：理解分层架构设计思想</li>
+                        <li><strong>框架原理</strong>：深入理解框架底层机制</li>
+                    </ul>
+
+                    <h2>SSM的发展历程</h2>
+                    
+                    <ul>
+                        <li><strong>2003年</strong>：Spring框架诞生</li>
+                        <li><strong>2005年</strong>：SpringMVC发布</li>
+                        <li><strong>2010年</strong>：MyBatis从iBatis发展而来</li>
+                        <li><strong>2012年</strong>：SSM整合方案成熟</li>
+                        <li><strong>2014年</strong>：Spring Boot出现，简化SSM配置</li>
+                        <li><strong>现在</strong>：仍然是主流的Java Web开发方案</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 auberginewly. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 认证管理器 -->
+    <script src="../assets/js/modules/auth-manager.js"></script>
+    
+    <!-- 音乐播放器 -->
+    <script src="../assets/js/modules/audio-player.js"></script>
+</body>
+</html> 

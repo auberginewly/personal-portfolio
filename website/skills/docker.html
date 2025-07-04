@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker - 技能详情 - auberginewly</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/modules/music-player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .skill-detail {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+        .skill-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #2496ed 0%, #0db7ed 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        .skill-header .skill-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .content h2 {
+            color: #333;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        .content h3 {
+            color: #666;
+            margin-top: 25px;
+        }
+        .content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .content li {
+            margin: 8px 0;
+        }
+        .highlight {
+            background: linear-gradient(120deg, rgba(135, 206, 235, 0.3) 0%, rgba(135, 206, 235, 0.1) 100%);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🍆 auberginewly</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../skills.html">技术栈</a></li>
+                <li><a href="../projects.html">我的项目</a></li>
+                <li><a href="../blog-list.html">技术博客</a></li>
+                <li><a href="../todo.html">待办事项</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="skill-detail">
+                <a href="../skills.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回技术栈
+                </a>
+                
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <h1>Docker</h1>
+                    <p>应用容器化平台</p>
+                </div>
+
+                <div class="content">
+                    <h2>什么是Docker？</h2>
+                    
+                    <p>Docker是一个开源的<span class="highlight">容器化平台</span>，允许开发者将应用程序及其依赖项打包到一个轻量级、可移植的容器中。Docker容器可以在任何支持Docker的环境中运行，实现了<span class="highlight">"一次构建，到处运行"</span>的目标。</p>
+
+                    <h2>Docker的核心概念</h2>
+                    
+                    <h3>📦 镜像（Image）</h3>
+                    <ul>
+                        <li><strong>只读模板</strong>：包含应用程序和运行环境的静态文件</li>
+                        <li><strong>分层存储</strong>：由多个只读层组成，提高存储效率</li>
+                        <li><strong>版本控制</strong>：通过标签管理不同版本的镜像</li>
+                        <li><strong>可复用</strong>：一个镜像可以创建多个容器</li>
+                    </ul>
+
+                    <h3>🏃 容器（Container）</h3>
+                    <ul>
+                        <li><strong>运行实例</strong>：镜像的可执行实例</li>
+                        <li><strong>进程隔离</strong>：每个容器都有独立的进程空间</li>
+                        <li><strong>轻量级</strong>：比虚拟机更轻量，启动速度快</li>
+                        <li><strong>可写层</strong>：在只读镜像上添加可写层</li>
+                    </ul>
+
+                    <h3>🏠 仓库（Repository）</h3>
+                    <ul>
+                        <li><strong>集中存储</strong>：存储和分发Docker镜像</li>
+                        <li><strong>公共仓库</strong>：Docker Hub提供官方镜像</li>
+                        <li><strong>私有仓库</strong>：企业内部的镜像仓库</li>
+                        <li><strong>自动构建</strong>：与代码仓库关联自动构建镜像</li>
+                    </ul>
+
+                    <h2>Docker的优势</h2>
+                    
+                    <h3>🚀 轻量级</h3>
+                    <ul>
+                        <li><strong>资源占用少</strong>：共享操作系统内核</li>
+                        <li><strong>启动速度快</strong>：秒级启动时间</li>
+                        <li><strong>高密度部署</strong>：单台服务器可运行更多容器</li>
+                    </ul>
+
+                    <h3>🎯 一致性</h3>
+                    <ul>
+                        <li><strong>环境一致</strong>：开发、测试、生产环境保持一致</li>
+                        <li><strong>依赖管理</strong>：将应用和依赖打包在一起</li>
+                        <li><strong>版本控制</strong>：环境配置可以版本化管理</li>
+                    </ul>
+
+                    <h3>🔧 可移植性</h3>
+                    <ul>
+                        <li><strong>跨平台</strong>：在不同操作系统上运行</li>
+                        <li><strong>云原生</strong>：在各种云平台上部署</li>
+                        <li><strong>混合云</strong>：在本地和云环境间迁移</li>
+                    </ul>
+
+                    <h2>Docker的应用场景</h2>
+                    
+                    <h3>🌐 微服务架构</h3>
+                    <p>将单体应用拆分为多个微服务，每个服务运行在独立的容器中，提高系统的可维护性和可扩展性。</p>
+
+                    <h3>☁️ 云原生应用</h3>
+                    <p>与Kubernetes等容器编排平台结合，实现自动化部署、扩缩容和运维管理。</p>
+
+                    <h3>🚀 持续集成/持续部署</h3>
+                    <p>在CI/CD流水线中使用Docker，确保构建和部署环境的一致性。</p>
+
+                    <h3>💻 开发环境</h3>
+                    <p>快速搭建开发环境，团队成员可以使用相同的开发环境，减少"在我机器上能运行"的问题。</p>
+
+                    <h2>Docker核心技术</h2>
+                    
+                    <h3>🧬 Linux容器技术</h3>
+                    <ul>
+                        <li><strong>Namespace</strong>：进程隔离，提供独立的运行环境</li>
+                        <li><strong>Cgroups</strong>：资源限制，控制容器的资源使用</li>
+                        <li><strong>Union FS</strong>：联合文件系统，支持分层存储</li>
+                    </ul>
+
+                    <h3>🔧 Docker引擎</h3>
+                    <ul>
+                        <li><strong>Docker Daemon</strong>：后台守护进程，管理容器生命周期</li>
+                        <li><strong>Docker Client</strong>：命令行工具，与Docker Daemon通信</li>
+                        <li><strong>REST API</strong>：提供编程接口，支持远程操作</li>
+                    </ul>
+
+                    <h2>Docker常用命令</h2>
+                    
+                    <h3>📋 镜像操作</h3>
+                    <ul>
+                        <li><strong>docker pull</strong>：从仓库拉取镜像</li>
+                        <li><strong>docker build</strong>：根据Dockerfile构建镜像</li>
+                        <li><strong>docker images</strong>：查看本地镜像列表</li>
+                        <li><strong>docker rmi</strong>：删除镜像</li>
+                    </ul>
+
+                    <h3>🏃 容器操作</h3>
+                    <ul>
+                        <li><strong>docker run</strong>：创建并启动容器</li>
+                        <li><strong>docker ps</strong>：查看运行中的容器</li>
+                        <li><strong>docker exec</strong>：在运行的容器中执行命令</li>
+                        <li><strong>docker stop</strong>：停止容器</li>
+                    </ul>
+
+                    <h2>Docker生态系统</h2>
+                    
+                    <h3>🎼 Docker Compose</h3>
+                    <p>用于定义和运行多容器Docker应用的工具，通过YAML文件配置多个服务。</p>
+
+                    <h3>☸️ Kubernetes</h3>
+                    <p>容器编排平台，用于自动化部署、扩缩容和管理容器化应用。</p>
+
+                    <h3>🏪 Docker Hub</h3>
+                    <p>官方的Docker镜像仓库，提供数百万个预构建的容器镜像。</p>
+
+                    <h2>学习Docker的重要性</h2>
+                    
+                    <ul>
+                        <li><strong>现代化部署</strong>：容器化是现代应用部署的标准</li>
+                        <li><strong>DevOps实践</strong>：是DevOps工具链的重要组成部分</li>
+                        <li><strong>云原生基础</strong>：云原生应用开发的基础技术</li>
+                        <li><strong>提高效率</strong>：简化开发、测试和部署流程</li>
+                        <li><strong>职业发展</strong>：容器技术是现代开发者的必备技能</li>
+                        <li><strong>资源利用</strong>：提高服务器资源利用率</li>
+                    </ul>
+
+                    <h2>Docker的发展历程</h2>
+                    
+                    <ul>
+                        <li><strong>2013年</strong>：Docker公司发布第一个版本</li>
+                        <li><strong>2014年</strong>：Docker 1.0发布，生产环境可用</li>
+                        <li><strong>2016年</strong>：Docker Swarm发布，内置容器编排</li>
+                        <li><strong>2017年</strong>：Docker CE/EE分离，社区版和企业版</li>
+                        <li><strong>现在</strong>：成为容器技术的行业标准</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 auberginewly. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 认证管理器 -->
+    <script src="../assets/js/modules/auth-manager.js"></script>
+    
+    <!-- 音乐播放器 -->
+    <script src="../assets/js/modules/audio-player.js"></script>
+</body>
+</html> 

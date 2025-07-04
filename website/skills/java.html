@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java - 技能详情 - auberginewly</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/modules/music-player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .skill-detail {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+        .skill-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        .skill-header .skill-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .content h2 {
+            color: #333;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        .content h3 {
+            color: #666;
+            margin-top: 25px;
+        }
+        .content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .content li {
+            margin: 8px 0;
+        }
+        .highlight {
+            background: linear-gradient(120deg, rgba(135, 206, 235, 0.3) 0%, rgba(135, 206, 235, 0.1) 100%);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🍆 auberginewly</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../skills.html">技术栈</a></li>
+                <li><a href="../projects.html">我的项目</a></li>
+                <li><a href="../blog-list.html">技术博客</a></li>
+                <li><a href="../todo.html">待办事项</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="skill-detail">
+                <a href="../skills.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回技术栈
+                </a>
+                
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <h1>Java</h1>
+                    <p>跨平台的面向对象编程语言</p>
+                </div>
+
+                <div class="content">
+                    <h2>什么是Java？</h2>
+                    
+                    <p>Java是一种广泛使用的<span class="highlight">面向对象编程语言</span>，由Sun Microsystems公司于1995年发布，现在由Oracle Corporation维护。Java的设计目标是<span class="highlight">"一次编写，到处运行"</span>（Write Once, Run Anywhere），这意味着编译后的Java代码可以在任何支持Java的平台上运行。</p>
+
+                    <h2>Java的核心特性</h2>
+                    
+                    <h3>🔧 面向对象编程</h3>
+                    <ul>
+                        <li><strong>封装</strong>：将数据和操作数据的方法组合在一起</li>
+                        <li><strong>继承</strong>：子类可以继承父类的属性和方法</li>
+                        <li><strong>多态</strong>：同一个接口可以有不同的实现方式</li>
+                        <li><strong>抽象</strong>：隐藏实现细节，只暴露必要的接口</li>
+                    </ul>
+
+                    <h3>⚡ 平台无关性</h3>
+                    <ul>
+                        <li>Java代码编译成<span class="highlight">字节码（Bytecode）</span></li>
+                        <li>字节码在<span class="highlight">Java虚拟机（JVM）</span>上运行</li>
+                        <li>不同操作系统有对应的JVM实现</li>
+                        <li>实现了真正的跨平台运行</li>
+                    </ul>
+
+                    <h3>🛡️ 安全性</h3>
+                    <ul>
+                        <li><strong>自动内存管理</strong>：垃圾回收机制自动释放内存</li>
+                        <li><strong>类型安全</strong>：强类型系统防止类型错误</li>
+                        <li><strong>异常处理</strong>：完善的异常处理机制</li>
+                        <li><strong>安全检查</strong>：运行时进行安全验证</li>
+                    </ul>
+
+                    <h2>Java的应用领域</h2>
+                    
+                    <h3>🌐 企业级应用开发</h3>
+                    <p>Java是企业级应用开发的首选语言，广泛用于构建大型、可扩展的业务系统。</p>
+
+                    <h3>📱 Android应用开发</h3>
+                    <p>Android原生应用主要使用Java开发，拥有庞大的移动应用生态。</p>
+
+                    <h3>🌍 Web后端开发</h3>
+                    <p>通过Spring、Spring Boot等框架，Java在Web后端开发中占据重要地位。</p>
+
+                    <h3>💾 大数据处理</h3>
+                    <p>Hadoop、Spark、Kafka等大数据工具都是用Java开发的。</p>
+
+                    <h2>为什么学习Java？</h2>
+                    
+                    <ul>
+                        <li><strong>就业机会多</strong>：Java是最受欢迎的编程语言之一</li>
+                        <li><strong>生态系统丰富</strong>：拥有大量的库和框架</li>
+                        <li><strong>学习资源丰富</strong>：有大量的教程和文档</li>
+                        <li><strong>稳定性强</strong>：企业级应用的理想选择</li>
+                        <li><strong>向后兼容</strong>：新版本保持对旧版本的兼容</li>
+                    </ul>
+
+                    <h2>Java的发展历程</h2>
+                    
+                    <ul>
+                        <li><strong>1995年</strong>：Java 1.0发布</li>
+                        <li><strong>1997年</strong>：Java 1.1引入内部类</li>
+                        <li><strong>1998年</strong>：Java 1.2引入Swing和集合框架</li>
+                        <li><strong>2004年</strong>：Java 5.0引入泛型和注解</li>
+                        <li><strong>2014年</strong>：Java 8引入Lambda表达式</li>
+                        <li><strong>至今</strong>：每6个月发布一个新版本</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 auberginewly. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 认证管理器 -->
+    <script src="../assets/js/modules/auth-manager.js"></script>
+    
+    <!-- 音乐播放器 -->
+    <script src="../assets/js/modules/audio-player.js"></script>
+</body>
+</html> 

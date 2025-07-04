@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot - 技能详情 - auberginewly</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/modules/music-player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .skill-detail {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+        .skill-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #68bd45 0%, #5a9b3b 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        .skill-header .skill-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .content h2 {
+            color: #333;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        .content h3 {
+            color: #666;
+            margin-top: 25px;
+        }
+        .content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .content li {
+            margin: 8px 0;
+        }
+        .highlight {
+            background: linear-gradient(120deg, rgba(135, 206, 235, 0.3) 0%, rgba(135, 206, 235, 0.1) 100%);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🍆 auberginewly</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../skills.html">技术栈</a></li>
+                <li><a href="../projects.html">我的项目</a></li>
+                <li><a href="../blog-list.html">技术博客</a></li>
+                <li><a href="../todo.html">待办事项</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="skill-detail">
+                <a href="../skills.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回技术栈
+                </a>
+                
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h1>Spring Boot</h1>
+                    <p>快速构建Java微服务应用的框架</p>
+                </div>
+
+                <div class="content">
+                    <h2>什么是Spring Boot？</h2>
+                    
+                    <p>Spring Boot是<span class="highlight">基于Spring框架的快速开发脚手架</span>，由Pivotal团队提供。它采用<span class="highlight">"约定优于配置"</span>的理念，大大简化了Spring应用的初始搭建以及开发过程，让开发者能够快速创建独立的、生产级别的Spring应用程序。</p>
+
+                    <h2>Spring Boot的核心特性</h2>
+                    
+                    <h3>🚀 快速启动</h3>
+                    <ul>
+                        <li><strong>零配置</strong>：最小化的配置文件</li>
+                        <li><strong>自动配置</strong>：智能的自动配置机制</li>
+                        <li><strong>内嵌服务器</strong>：内置Tomcat、Jetty等服务器</li>
+                        <li><strong>独立运行</strong>：jar包即可运行，无需外部容器</li>
+                    </ul>
+
+                    <h3>📦 起步依赖</h3>
+                    <ul>
+                        <li><strong>Starter POMs</strong>：预定义的依赖组合</li>
+                        <li><strong>版本管理</strong>：自动管理依赖版本冲突</li>
+                        <li><strong>模块化</strong>：按需引入功能模块</li>
+                        <li><strong>简化配置</strong>：减少Maven/Gradle配置</li>
+                    </ul>
+
+                    <h3>🔧 生产就绪</h3>
+                    <ul>
+                        <li><strong>健康检查</strong>：应用健康状态监控</li>
+                        <li><strong>指标监控</strong>：性能和业务指标收集</li>
+                        <li><strong>外部化配置</strong>：支持多环境配置</li>
+                        <li><strong>安全机制</strong>：集成Spring Security</li>
+                    </ul>
+
+                    <h2>Spring Boot的应用场景</h2>
+                    
+                    <h3>🌐 微服务架构</h3>
+                    <p>Spring Boot是构建微服务的首选框架，配合Spring Cloud可以快速构建分布式系统。</p>
+
+                    <h3>🔌 RESTful API</h3>
+                    <p>快速开发REST风格的Web服务，为前端或移动端提供数据接口。</p>
+
+                    <h3>📊 数据处理应用</h3>
+                    <p>集成Spring Data，快速构建数据访问层，支持多种数据源。</p>
+
+                    <h3>⚡ 快速原型</h3>
+                    <p>快速验证想法和概念，最小化开发成本。</p>
+
+                    <h2>Spring Boot自动配置原理</h2>
+                    
+                    <h3>🎯 条件注解</h3>
+                    <ul>
+                        <li><strong>@ConditionalOnClass</strong>：类存在时生效</li>
+                        <li><strong>@ConditionalOnMissingBean</strong>：Bean不存在时生效</li>
+                        <li><strong>@ConditionalOnProperty</strong>：属性匹配时生效</li>
+                        <li><strong>@ConditionalOnWebApplication</strong>：Web应用时生效</li>
+                    </ul>
+
+                    <h3>📋 配置类</h3>
+                    <ul>
+                        <li><strong>@Configuration</strong>：标识配置类</li>
+                        <li><strong>@EnableAutoConfiguration</strong>：启用自动配置</li>
+                        <li><strong>@ComponentScan</strong>：组件扫描</li>
+                        <li><strong>@SpringBootApplication</strong>：组合注解</li>
+                    </ul>
+
+                    <h2>Spring Boot Starter模块</h2>
+                    
+                    <h3>🌐 Web开发</h3>
+                    <ul>
+                        <li><strong>spring-boot-starter-web</strong>：Web应用开发</li>
+                        <li><strong>spring-boot-starter-webflux</strong>：响应式Web开发</li>
+                        <li><strong>spring-boot-starter-thymeleaf</strong>：模板引擎</li>
+                        <li><strong>spring-boot-starter-websocket</strong>：WebSocket支持</li>
+                    </ul>
+
+                    <h3>💾 数据访问</h3>
+                    <ul>
+                        <li><strong>spring-boot-starter-data-jpa</strong>：JPA数据访问</li>
+                        <li><strong>spring-boot-starter-data-redis</strong>：Redis缓存</li>
+                        <li><strong>spring-boot-starter-data-mongodb</strong>：MongoDB支持</li>
+                        <li><strong>spring-boot-starter-jdbc</strong>：JDBC数据访问</li>
+                    </ul>
+
+                    <h3>🔐 安全和监控</h3>
+                    <ul>
+                        <li><strong>spring-boot-starter-security</strong>：安全框架</li>
+                        <li><strong>spring-boot-starter-actuator</strong>：应用监控</li>
+                        <li><strong>spring-boot-starter-test</strong>：测试支持</li>
+                        <li><strong>spring-boot-starter-validation</strong>：数据验证</li>
+                    </ul>
+
+                    <h2>Spring Boot配置方式</h2>
+                    
+                    <h3>📄 配置文件</h3>
+                    <ul>
+                        <li><strong>application.properties</strong>：传统属性文件</li>
+                        <li><strong>application.yml</strong>：YAML格式配置</li>
+                        <li><strong>多环境配置</strong>：profile特定配置</li>
+                        <li><strong>外部配置</strong>：命令行参数、环境变量</li>
+                    </ul>
+
+                    <h3>🎯 Java配置</h3>
+                    <ul>
+                        <li><strong>@ConfigurationProperties</strong>：配置属性绑定</li>
+                        <li><strong>@Value</strong>：属性值注入</li>
+                        <li><strong>@Profile</strong>：环境特定配置</li>
+                        <li><strong>@Bean</strong>：手动配置Bean</li>
+                    </ul>
+
+                    <h2>Spring Boot vs 传统Spring</h2>
+                    
+                    <h3>✅ Spring Boot优势</h3>
+                    <ul>
+                        <li><strong>配置简化</strong>：大量减少XML配置</li>
+                        <li><strong>快速启动</strong>：分钟级创建可运行应用</li>
+                        <li><strong>内嵌服务器</strong>：无需外部容器部署</li>
+                        <li><strong>生产就绪</strong>：内置监控和健康检查</li>
+                        <li><strong>微服务友好</strong>：天然支持微服务架构</li>
+                    </ul>
+
+                    <h3>⚠️ 注意事项</h3>
+                    <ul>
+                        <li><strong>学习成本</strong>：需要理解自动配置原理</li>
+                        <li><strong>调试复杂</strong>：自动配置可能难以调试</li>
+                        <li><strong>依赖管理</strong>：需要了解Starter依赖关系</li>
+                    </ul>
+
+                    <h2>学习Spring Boot的重要性</h2>
+                    
+                    <ul>
+                        <li><strong>现代Java开发</strong>：当前Java开发的主流框架</li>
+                        <li><strong>微服务基础</strong>：微服务架构的技术基础</li>
+                        <li><strong>企业应用</strong>：大部分企业都在使用Spring Boot</li>
+                        <li><strong>快速开发</strong>：极大提升开发效率</li>
+                        <li><strong>生态丰富</strong>：与Spring全家桶完美集成</li>
+                        <li><strong>就业竞争力</strong>：Java开发者的必备技能</li>
+                    </ul>
+
+                    <h2>Spring Boot的发展历程</h2>
+                    
+                    <ul>
+                        <li><strong>2012年</strong>：Spring Boot项目启动</li>
+                        <li><strong>2014年</strong>：Spring Boot 1.0正式发布</li>
+                        <li><strong>2018年</strong>：Spring Boot 2.0发布，支持Spring 5</li>
+                        <li><strong>2020年</strong>：Spring Boot 2.4支持配置文件导入</li>
+                        <li><strong>2022年</strong>：Spring Boot 2.7支持GraalVM原生镜像</li>
+                        <li><strong>现在</strong>：Spring Boot 3.x支持Java 17+</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 auberginewly. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 认证管理器 -->
+    <script src="../assets/js/modules/auth-manager.js"></script>
+    
+    <!-- 音乐播放器 -->
+    <script src="../assets/js/modules/audio-player.js"></script>
+</body>
+</html> 

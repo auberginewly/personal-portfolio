@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL - 技能详情 - auberginewly</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/modules/music-player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .skill-detail {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+        .skill-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #00758f 0%, #004d5e 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        .skill-header .skill-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .content h2 {
+            color: #333;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        .content h3 {
+            color: #666;
+            margin-top: 25px;
+        }
+        .content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .content li {
+            margin: 8px 0;
+        }
+        .highlight {
+            background: linear-gradient(120deg, rgba(135, 206, 235, 0.3) 0%, rgba(135, 206, 235, 0.1) 100%);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🍆 auberginewly</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../skills.html">技术栈</a></li>
+                <li><a href="../projects.html">我的项目</a></li>
+                <li><a href="../blog-list.html">技术博客</a></li>
+                <li><a href="../todo.html">待办事项</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="skill-detail">
+                <a href="../skills.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回技术栈
+                </a>
+                
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h1>MySQL</h1>
+                    <p>世界上最流行的开源关系型数据库</p>
+                </div>
+
+                <div class="content">
+                    <h2>什么是MySQL？</h2>
+                    
+                    <p>MySQL是一个<span class="highlight">开源的关系型数据库管理系统</span>（RDBMS），由瑞典MySQL AB公司开发，现在由Oracle公司维护。MySQL是世界上最流行的数据库系统之一，广泛用于Web应用程序、企业应用和数据仓库等领域。</p>
+
+                    <h2>MySQL的核心特性</h2>
+                    
+                    <h3>🔧 可靠性和性能</h3>
+                    <ul>
+                        <li><strong>ACID事务</strong>：保证数据的完整性和一致性</li>
+                        <li><strong>高性能</strong>：优化的查询引擎，支持高并发</li>
+                        <li><strong>数据完整性</strong>：约束和外键保证数据质量</li>
+                        <li><strong>备份和恢复</strong>：多种备份和恢复机制</li>
+                    </ul>
+
+                    <h3>🌐 跨平台支持</h3>
+                    <ul>
+                        <li><strong>多操作系统</strong>：支持Windows、Linux、macOS等</li>
+                        <li><strong>多语言支持</strong>：支持多种编程语言接口</li>
+                        <li><strong>标准兼容</strong>：遵循SQL标准</li>
+                        <li><strong>字符集支持</strong>：支持多种字符集和排序规则</li>
+                    </ul>
+
+                    <h3>🔐 安全性</h3>
+                    <ul>
+                        <li><strong>用户权限管理</strong>：细粒度的权限控制</li>
+                        <li><strong>SSL加密</strong>：数据传输加密</li>
+                        <li><strong>审计日志</strong>：记录数据库操作</li>
+                        <li><strong>防火墙</strong>：MySQL企业版防火墙</li>
+                    </ul>
+
+                    <h2>MySQL的应用场景</h2>
+                    
+                    <h3>🌐 Web应用</h3>
+                    <p>LAMP（Linux、Apache、MySQL、PHP）技术栈的重要组成部分，广泛用于网站和Web应用的数据存储。</p>
+
+                    <h3>🏢 企业应用</h3>
+                    <p>ERP、CRM、财务系统等企业级应用的数据库选择，提供稳定可靠的数据存储。</p>
+
+                    <h3>📊 数据仓库</h3>
+                    <p>作为数据仓库的存储层，支持大量数据的存储和复杂查询分析。</p>
+
+                    <h3>☁️ 云原生应用</h3>
+                    <p>在云环境中部署，支持容器化和微服务架构。</p>
+
+                    <h2>MySQL存储引擎</h2>
+                    
+                    <h3>🔧 InnoDB</h3>
+                    <ul>
+                        <li><strong>事务支持</strong>：完整的ACID事务支持</li>
+                        <li><strong>外键约束</strong>：支持外键关系</li>
+                        <li><strong>行级锁定</strong>：支持并发访问</li>
+                        <li><strong>崩溃恢复</strong>：自动崩溃恢复机制</li>
+                    </ul>
+
+                    <h3>⚡ MyISAM</h3>
+                    <ul>
+                        <li><strong>快速读取</strong>：优化的读取性能</li>
+                        <li><strong>表级锁定</strong>：简单的锁定机制</li>
+                        <li><strong>压缩存储</strong>：支持表压缩</li>
+                        <li><strong>全文索引</strong>：支持全文搜索</li>
+                    </ul>
+
+                    <h2>学习MySQL的重要性</h2>
+                    
+                    <ul>
+                        <li><strong>数据存储基础</strong>：几乎所有应用都需要数据存储</li>
+                        <li><strong>就业必备</strong>：后端开发者的核心技能</li>
+                        <li><strong>行业标准</strong>：Web开发的标准数据库</li>
+                        <li><strong>性能优化</strong>：掌握数据库优化技巧</li>
+                        <li><strong>数据分析</strong>：数据分析和报表的基础</li>
+                        <li><strong>职业发展</strong>：DBA和数据工程师的基础</li>
+                    </ul>
+
+                    <h2>MySQL的发展历程</h2>
+                    
+                    <ul>
+                        <li><strong>1995年</strong>：MySQL AB公司成立</li>
+                        <li><strong>1996年</strong>：MySQL 1.0发布</li>
+                        <li><strong>2008年</strong>：Sun公司收购MySQL AB</li>
+                        <li><strong>2010年</strong>：Oracle公司收购Sun</li>
+                        <li><strong>2016年</strong>：MySQL 5.7发布，支持JSON</li>
+                        <li><strong>2018年</strong>：MySQL 8.0发布，重大性能提升</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 auberginewly. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 认证管理器 -->
+    <script src="../assets/js/modules/auth-manager.js"></script>
+    
+    <!-- 音乐播放器 -->
+    <script src="../assets/js/modules/audio-player.js"></script>
+</body>
+</html> 

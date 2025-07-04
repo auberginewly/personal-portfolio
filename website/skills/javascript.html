@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - 技能详情 - auberginewly</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/modules/music-player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .skill-detail {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+        .skill-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        .skill-header .skill-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .content h2 {
+            color: #333;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        .content h3 {
+            color: #666;
+            margin-top: 25px;
+        }
+        .content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .content li {
+            margin: 8px 0;
+        }
+        .highlight {
+            background: linear-gradient(120deg, rgba(135, 206, 235, 0.3) 0%, rgba(135, 206, 235, 0.1) 100%);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🍆 auberginewly</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../skills.html">技术栈</a></li>
+                <li><a href="../projects.html">我的项目</a></li>
+                <li><a href="../blog-list.html">技术博客</a></li>
+                <li><a href="../todo.html">待办事项</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="skill-detail">
+                <a href="../skills.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回技术栈
+                </a>
+                
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <h1>JavaScript</h1>
+                    <p>动态的Web编程语言</p>
+                </div>
+
+                <div class="content">
+                    <h2>什么是JavaScript？</h2>
+                    
+                    <p>JavaScript是一种<span class="highlight">高级编程语言</span>，是Web开发中不可缺少的三大技术之一（HTML、CSS、JavaScript）。它是一种<span class="highlight">动态类型</span>、<span class="highlight">解释型</span>语言，主要用于为网页添加交互性，现在也广泛用于服务器端开发、移动应用开发等领域。</p>
+
+                    <h2>JavaScript的核心特性</h2>
+                    
+                    <h3>🔄 动态类型</h3>
+                    <ul>
+                        <li><strong>灵活的变量类型</strong>：变量可以在运行时改变类型</li>
+                        <li><strong>弱类型检查</strong>：自动进行类型转换</li>
+                        <li><strong>简洁的语法</strong>：不需要声明变量类型</li>
+                    </ul>
+
+                    <h3>⚡ 事件驱动</h3>
+                    <ul>
+                        <li><strong>用户交互</strong>：响应点击、输入、鼠标移动等事件</li>
+                        <li><strong>异步编程</strong>：处理网络请求和定时任务</li>
+                        <li><strong>回调函数</strong>：事件发生时执行特定代码</li>
+                    </ul>
+
+                    <h3>🎯 函数式编程</h3>
+                    <ul>
+                        <li><strong>函数是一等公民</strong>：可以赋值给变量、作为参数传递</li>
+                        <li><strong>高阶函数</strong>：接受函数作为参数或返回函数</li>
+                        <li><strong>闭包</strong>：函数可以访问外部作用域的变量</li>
+                    </ul>
+
+                    <h3>🏗️ 原型继承</h3>
+                    <ul>
+                        <li><strong>原型链</strong>：对象通过原型链实现继承</li>
+                        <li><strong>动态属性</strong>：可以在运行时添加或修改属性</li>
+                        <li><strong>灵活的对象模型</strong>：支持多种编程范式</li>
+                    </ul>
+
+                    <h2>JavaScript的应用领域</h2>
+                    
+                    <h3>🌐 前端Web开发</h3>
+                    <p>JavaScript的传统应用领域，用于创建交互式的用户界面，处理用户输入，动态更新页面内容。</p>
+
+                    <h3>🖥️ 后端开发（Node.js）</h3>
+                    <p>通过Node.js运行时，JavaScript可以用于服务器端开发，构建RESTful API、实时应用等。</p>
+
+                    <h3>📱 移动应用开发</h3>
+                    <p>React Native、Ionic等框架允许使用JavaScript开发跨平台移动应用。</p>
+
+                    <h3>🖥️ 桌面应用开发</h3>
+                    <p>Electron框架让JavaScript可以开发跨平台桌面应用，如VS Code、Discord等。</p>
+
+                    <h2>ES6+现代JavaScript特性</h2>
+                    
+                    <h3>🎯 箭头函数</h3>
+                    <p>更简洁的函数语法，自动绑定this上下文，适合函数式编程风格。</p>
+
+                    <h3>🔧 模块化</h3>
+                    <p>import/export语法支持模块化开发，便于代码组织和复用。</p>
+
+                    <h3>⏰ Promise和async/await</h3>
+                    <p>优雅地处理异步操作，避免回调地狱，让代码更容易理解和维护。</p>
+
+                    <h3>📊 解构赋值</h3>
+                    <p>从数组或对象中提取值并赋给变量，让代码更加简洁。</p>
+
+                    <h3>🎨 模板字符串</h3>
+                    <p>使用反引号创建字符串，支持变量插值和多行文本。</p>
+
+                    <h2>为什么学习JavaScript？</h2>
+                    
+                    <ul>
+                        <li><strong>Web开发必备</strong>：前端开发的唯一选择</li>
+                        <li><strong>全栈开发</strong>：一种语言搞定前后端</li>
+                        <li><strong>生态系统庞大</strong>：npm拥有海量的包和库</li>
+                        <li><strong>学习门槛低</strong>：语法简单，容易上手</li>
+                        <li><strong>就业前景好</strong>：市场需求量大</li>
+                        <li><strong>持续发展</strong>：ECMAScript标准不断更新</li>
+                    </ul>
+
+                    <h2>JavaScript的发展历程</h2>
+                    
+                    <ul>
+                        <li><strong>1995年</strong>：Brendan Eich在Netscape公司创造JavaScript</li>
+                        <li><strong>1997年</strong>：ECMAScript标准发布</li>
+                        <li><strong>2009年</strong>：Node.js发布，JavaScript进入服务器端</li>
+                        <li><strong>2015年</strong>：ES6/ES2015发布，引入现代语法特性</li>
+                        <li><strong>现在</strong>：每年发布新的ECMAScript版本</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 auberginewly. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 认证管理器 -->
+    <script src="../assets/js/modules/auth-manager.js"></script>
+    
+    <!-- 音乐播放器 -->
+    <script src="../assets/js/modules/audio-player.js"></script>
+</body>
+</html> 

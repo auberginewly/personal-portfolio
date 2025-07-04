@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C语言 - 技能详情 - auberginewly</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/modules/music-player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .skill-detail {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+        .skill-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #00599c 0%, #004482 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        .skill-header .skill-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .content h2 {
+            color: #333;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        .content h3 {
+            color: #666;
+            margin-top: 25px;
+        }
+        .content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .content li {
+            margin: 8px 0;
+        }
+        .highlight {
+            background: linear-gradient(120deg, rgba(135, 206, 235, 0.3) 0%, rgba(135, 206, 235, 0.1) 100%);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🍆 auberginewly</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../skills.html">技术栈</a></li>
+                <li><a href="../projects.html">我的项目</a></li>
+                <li><a href="../blog-list.html">技术博客</a></li>
+                <li><a href="../todo.html">待办事项</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="skill-detail">
+                <a href="../skills.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回技术栈
+                </a>
+                
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h1>C语言</h1>
+                    <p>系统编程的基础语言</p>
+                </div>
+
+                <div class="content">
+                    <h2>什么是C语言？</h2>
+                    
+                    <p>C语言是一种<span class="highlight">通用的程序设计语言</span>，由Dennis Ritchie在1972年在贝尔实验室开发。C语言是一种<span class="highlight">底层语言</span>，提供了对计算机硬件的直接访问能力，被广泛用于系统软件、嵌入式系统和高性能应用的开发。</p>
+
+                    <h2>C语言的核心特性</h2>
+                    
+                    <h3>⚡ 高效性</h3>
+                    <ul>
+                        <li><strong>编译型语言</strong>：编译后直接生成机器码</li>
+                        <li><strong>接近硬件</strong>：可以直接操作内存和硬件</li>
+                        <li><strong>运行速度快</strong>：执行效率极高</li>
+                        <li><strong>资源控制</strong>：程序员完全控制内存管理</li>
+                    </ul>
+
+                    <h3>🔧 简洁性</h3>
+                    <ul>
+                        <li><strong>语法简单</strong>：关键字少，语法规则清晰</li>
+                        <li><strong>结构化</strong>：支持函数、结构体等组织代码</li>
+                        <li><strong>模块化</strong>：通过头文件实现代码分离</li>
+                        <li><strong>可读性强</strong>：代码结构清晰易懂</li>
+                    </ul>
+
+                    <h3>🌐 可移植性</h3>
+                    <ul>
+                        <li><strong>标准化</strong>：遵循ANSI C标准</li>
+                        <li><strong>跨平台</strong>：在不同操作系统上编译运行</li>
+                        <li><strong>硬件无关</strong>：可以在各种处理器架构上运行</li>
+                        <li><strong>广泛支持</strong>：几乎所有平台都支持C编译器</li>
+                    </ul>
+
+                    <h2>C语言的应用领域</h2>
+                    
+                    <h3>🖥️ 系统编程</h3>
+                    <p>操作系统内核、设备驱动程序、系统工具等底层软件开发。Linux内核、Windows系统组件等都大量使用C语言。</p>
+
+                    <h3>💾 嵌入式系统</h3>
+                    <p>微控制器编程、物联网设备、汽车电子系统等硬件相关的编程领域。</p>
+
+                    <h3>🔧 编译器开发</h3>
+                    <p>许多编程语言的编译器和解释器都是用C语言开发的，如GCC、Python解释器等。</p>
+
+                    <h3>🎮 游戏引擎</h3>
+                    <p>高性能游戏引擎的核心部分，需要极致的性能优化。</p>
+
+                    <h2>C语言基础语法</h2>
+                    
+                    <h3>📊 数据类型</h3>
+                    <ul>
+                        <li><strong>基本类型</strong>：int、float、double、char</li>
+                        <li><strong>修饰符</strong>：signed、unsigned、short、long</li>
+                        <li><strong>指针</strong>：存储变量地址的变量</li>
+                        <li><strong>数组</strong>：相同类型元素的集合</li>
+                        <li><strong>结构体</strong>：自定义的复合数据类型</li>
+                    </ul>
+
+                    <h3>🔄 控制结构</h3>
+                    <ul>
+                        <li><strong>条件语句</strong>：if-else、switch-case</li>
+                        <li><strong>循环语句</strong>：for、while、do-while</li>
+                        <li><strong>跳转语句</strong>：break、continue、goto、return</li>
+                    </ul>
+
+                    <h3>📝 函数</h3>
+                    <ul>
+                        <li><strong>函数定义</strong>：返回类型、函数名、参数列表</li>
+                        <li><strong>函数调用</strong>：传递参数和接收返回值</li>
+                        <li><strong>递归</strong>：函数调用自身</li>
+                        <li><strong>函数指针</strong>：指向函数的指针</li>
+                    </ul>
+
+                    <h2>C语言重要概念</h2>
+                    
+                    <h3>🧭 指针</h3>
+                    <ul>
+                        <li><strong>内存地址</strong>：指针存储变量在内存中的地址</li>
+                        <li><strong>解引用</strong>：通过指针访问指向的数据</li>
+                        <li><strong>指针运算</strong>：指针的加减运算</li>
+                        <li><strong>多级指针</strong>：指向指针的指针</li>
+                    </ul>
+
+                    <h3>🗂️ 内存管理</h3>
+                    <ul>
+                        <li><strong>栈内存</strong>：自动分配和释放的内存</li>
+                        <li><strong>堆内存</strong>：动态分配的内存</li>
+                        <li><strong>malloc/free</strong>：动态内存分配和释放</li>
+                        <li><strong>内存泄漏</strong>：未释放的内存造成的问题</li>
+                    </ul>
+
+                    <h3>📁 预处理器</h3>
+                    <ul>
+                        <li><strong>#include</strong>：包含头文件</li>
+                        <li><strong>#define</strong>：定义宏</li>
+                        <li><strong>#ifdef/#ifndef</strong>：条件编译</li>
+                        <li><strong>#pragma</strong>：编译器指令</li>
+                    </ul>
+
+                    <h2>C语言标准库</h2>
+                    
+                    <h3>📋 stdio.h</h3>
+                    <p>输入输出函数：printf、scanf、fopen、fclose等。</p>
+
+                    <h3>🔧 stdlib.h</h3>
+                    <p>通用工具函数：malloc、free、atoi、rand等。</p>
+
+                    <h3>🔤 string.h</h3>
+                    <p>字符串处理函数：strlen、strcpy、strcat、strcmp等。</p>
+
+                    <h3>🔢 math.h</h3>
+                    <p>数学函数：sin、cos、sqrt、pow等。</p>
+
+                    <h2>学习C语言的重要性</h2>
+                    
+                    <ul>
+                        <li><strong>编程基础</strong>：是学习其他编程语言的基础</li>
+                        <li><strong>系统理解</strong>：深入理解计算机工作原理</li>
+                        <li><strong>性能优化</strong>：掌握高效编程技巧</li>
+                        <li><strong>就业优势</strong>：系统开发、嵌入式等领域需求大</li>
+                        <li><strong>技术深度</strong>：提升编程思维和解决问题能力</li>
+                        <li><strong>历史地位</strong>：许多现代语言都受C语言影响</li>
+                    </ul>
+
+                    <h2>C语言的发展历程</h2>
+                    
+                    <ul>
+                        <li><strong>1972年</strong>：Dennis Ritchie在贝尔实验室开发C语言</li>
+                        <li><strong>1978年</strong>：《C程序设计语言》出版</li>
+                        <li><strong>1989年</strong>：ANSI C标准（C89）发布</li>
+                        <li><strong>1999年</strong>：C99标准发布，增加新特性</li>
+                        <li><strong>2011年</strong>：C11标准发布，支持多线程</li>
+                        <li><strong>2018年</strong>：C17标准发布，修复C11的问题</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 auberginewly. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 认证管理器 -->
+    <script src="../assets/js/modules/auth-manager.js"></script>
+    
+    <!-- 音乐播放器 -->
+    <script src="../assets/js/modules/audio-player.js"></script>
+</body>
+</html> 
